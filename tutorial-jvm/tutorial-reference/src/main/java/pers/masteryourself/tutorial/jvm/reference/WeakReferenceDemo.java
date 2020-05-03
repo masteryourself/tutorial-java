@@ -3,7 +3,8 @@ package pers.masteryourself.tutorial.jvm.reference;
 import java.lang.ref.WeakReference;
 
 /**
- * <p>description : 软引用
+ * <p>description : WeakReferenceDemo，软引用
+ * <p>只要发生 GC 就会被回收
  *
  * <p>blog : https://blog.csdn.net/masteryourself
  *
@@ -22,7 +23,6 @@ public class WeakReferenceDemo {
         System.out.println(weakReference.get());
         object = null;
         System.gc();
-        System.out.println("gc 之后");
         // null
         System.out.println(object);
         // null
