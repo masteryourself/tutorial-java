@@ -9,13 +9,13 @@ package pers.masteryourself.tutorial.jvm.gc.reference;
  * @version : 1.0.0
  * @date : 2020/5/3 2:36
  */
-public class CycleReference {
+public class CycleReferenceDemo {
 
     private Object instance;
 
     public static void main(String[] args) {
-        CycleReference cycleReference1 = new CycleReference();
-        CycleReference cycleReference2 = new CycleReference();
+        CycleReferenceDemo cycleReference1 = new CycleReferenceDemo();
+        CycleReferenceDemo cycleReference2 = new CycleReferenceDemo();
         cycleReference1.instance = cycleReference2;
         cycleReference2.instance = cycleReference1;
         cycleReference1 = null;
