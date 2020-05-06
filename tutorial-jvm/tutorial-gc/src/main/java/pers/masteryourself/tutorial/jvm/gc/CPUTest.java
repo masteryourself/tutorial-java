@@ -1,8 +1,6 @@
 package pers.masteryourself.tutorial.jvm.gc;
 
 
-import java.util.Random;
-
 /**
  * <p>description : CPUTest
  *
