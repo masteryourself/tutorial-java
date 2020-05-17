@@ -3,18 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>tutorial-java</artifactId>
+        <artifactId>tutorial-juc</artifactId>
         <groupId>pers.masteryourself.tutorial.java</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tutorial-juc</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>tutorial-juc-volatile</artifactId>
 
-    <modules>
-        <module>tutorial-juc-thread</module>
-        <module>tutorial-juc-volatile</module>
-    </modules>
 
 </project>
