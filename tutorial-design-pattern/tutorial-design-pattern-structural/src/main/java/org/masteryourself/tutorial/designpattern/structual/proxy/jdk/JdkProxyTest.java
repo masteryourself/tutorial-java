@@ -20,7 +20,7 @@ public class JdkProxyTest {
      * $Proxy0 extends java.lang.reflect.Proxy implements UserService
      */
     public static void main(String[] args) {
-        Object proxy = ServiceProxy.getProxy(new UserService.UserServiceImpl());
+        Object proxy = JdkProxy.getProxy(new UserService.UserServiceImpl());
         ((UserService) proxy).save();
         // class com.sun.proxy.$Proxy0
         System.out.println(proxy.getClass());
