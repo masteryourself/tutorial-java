@@ -8,8 +8,15 @@
     <artifactId>tutorial-java</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
+
     <modules>
         <module>tutorial-design-pattern</module>
+        <module>tutorial-algorithm</module>
+        <module>tutorial-kafka</module>
+        <module>tutorial-dubbo</module>
+        <module>tutorial-tk-mybatis</module>
+        <module>tutorial-sharding</module>
+        <module>tutorial-mybatis</module>
     </modules>
 
     <properties>
