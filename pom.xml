@@ -17,6 +17,7 @@
         <module>tutorial-tk-mybatis</module>
         <module>tutorial-sharding</module>
         <module>tutorial-mybatis</module>
+        <module>tutorial-juc</module>
     </modules>
 
     <properties>
