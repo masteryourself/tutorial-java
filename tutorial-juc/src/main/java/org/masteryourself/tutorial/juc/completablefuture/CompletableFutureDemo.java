@@ -1,12 +1,9 @@
 package org.masteryourself.tutorial.juc.completablefuture;
 
-import org.junit.Test;
-
 import java.util.concurrent.*;
-import java.util.function.Function;
 
 /**
- * <p>description : CompletableFutureTest
+ * <p>description : CompletableFutureDemo
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -14,10 +11,17 @@ import java.util.function.Function;
  * @version : 1.0.0
  * @date : 2022/3/22 1:59 PM
  */
-public class CompletableFutureTest {
+public class CompletableFutureDemo {
 
-    @Test
-    public void test1() throws Exception {
+    public static void main(String[] args) throws Exception {
+        CompletableFutureDemo demo = new CompletableFutureDemo();
+        demo.demo1();
+        demo.demo2();
+        demo.demo3();
+        demo.demo4();
+    }
+
+    public void demo1() throws Exception {
         Void res = CompletableFuture.runAsync(() -> {
             try {
                 TimeUnit.SECONDS.sleep(3);
@@ -29,8 +33,7 @@ public class CompletableFutureTest {
         System.out.println(res);
     }
 
-    @Test
-    public void test2() {
+    public void demo2() {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 10, 60, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10), Executors.defaultThreadFactory(), new ThreadPoolExecutor.CallerRunsPolicy());
         Integer res = CompletableFuture.supplyAsync(() -> {
             try {
@@ -45,8 +48,7 @@ public class CompletableFutureTest {
         System.out.println(res);
     }
 
-    @Test
-    public void test3() {
+    public void demo3() {
         Integer res = CompletableFuture.supplyAsync(() -> {
             try {
                 TimeUnit.SECONDS.sleep(1);
@@ -65,8 +67,7 @@ public class CompletableFutureTest {
         System.out.println(res);
     }
 
-    @Test
-    public void test4() {
+    public void demo4() {
         long start = System.currentTimeMillis();
         Integer res = CompletableFuture.supplyAsync(() -> {
             try {

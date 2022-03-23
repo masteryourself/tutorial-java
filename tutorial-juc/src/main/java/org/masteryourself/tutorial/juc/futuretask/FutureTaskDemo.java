@@ -1,11 +1,9 @@
 package org.masteryourself.tutorial.juc.futuretask;
 
-import org.junit.Test;
-
 import java.util.concurrent.*;
 
 /**
- * <p>description : FutureTaskTest
+ * <p>description : FutureTaskDemo
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -13,10 +11,15 @@ import java.util.concurrent.*;
  * @version : 1.0.0
  * @date : 2022/3/22 11:17 AM
  */
-public class FutureTaskTest {
+public class FutureTaskDemo {
 
-    @Test
-    public void test1() throws Exception {
+    public static void main(String[] args) throws Exception {
+        FutureTaskDemo demo = new FutureTaskDemo();
+        demo.demo1();
+        demo.demo2();
+    }
+
+    public void demo1() throws Exception {
         FutureTask<String> task = new FutureTask<>(() -> {
             TimeUnit.SECONDS.sleep(3);
             return "任务执行完毕";
@@ -29,8 +32,7 @@ public class FutureTaskTest {
         // System.out.println(Thread.currentThread().getName() + "\t" + task.get(1L, TimeUnit.SECONDS));
     }
 
-    @Test
-    public void test2() throws Exception {
+    public void demo2() throws Exception {
         FutureTask<String> task = new FutureTask<>(() -> {
             TimeUnit.SECONDS.sleep(3);
             return "任务执行完毕";
