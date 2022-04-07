@@ -1,0 +1,29 @@
+package org.masteryourself.tutorial.nio.channel;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
+
+/**
+ * <p>description : ChannelTest
+ *
+ * <p>blog : https://www.yuque.com/ruanrenzhao/
+ *
+ * @author : masteryourself
+ * @version : 1.0.0
+ * @date : 2022/4/8 1:06 AM
+ */
+public class ChannelTest {
+
+    public static void main(String[] args) {
+        try (
+                FileChannel from = new FileInputStream("file/tutorial-io/data.txt").getChannel();
+                FileChannel to = new FileOutputStream("file/tutorial-io/to.txt").getChannel();) {
+            // 效率高, 底层会使用操作系统的零拷贝进行优化
+            from.transferTo(0, from.size(), to);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}

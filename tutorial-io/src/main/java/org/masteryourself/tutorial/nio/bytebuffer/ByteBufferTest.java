@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.Objects;
 
 /**
  * <p>description : ByteBufferTest
@@ -22,8 +21,7 @@ public class ByteBufferTest {
 
     public static void main(String[] args) {
         // 准备输入流
-        String fileName = Objects.requireNonNull(ByteBufferTest.class.getClassLoader().getResource("data.txt")).getFile();
-        try (FileChannel channel = new FileInputStream(fileName).getChannel()) {
+        try (FileChannel channel = new FileInputStream("file/tutorial-io/data.txt").getChannel()) {
             // 准备缓冲区
             ByteBuffer buffer = ByteBuffer.allocate(10);
             while (true) {
