@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.nio;
+package org.masteryourself.tutorial.nio.bytebuffer;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,7 +9,7 @@ import java.nio.channels.FileChannel;
 import java.util.Objects;
 
 /**
- * <p>description : ByteBufferTest1
+ * <p>description : ByteBufferTest
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -18,11 +18,11 @@ import java.util.Objects;
  * @date : 2022/4/7 6:28 PM
  */
 @Slf4j
-public class ByteBufferTest1 {
+public class ByteBufferTest {
 
     public static void main(String[] args) {
         // 准备输入流
-        String fileName = Objects.requireNonNull(ByteBufferTest1.class.getClassLoader().getResource("data.txt")).getFile();
+        String fileName = Objects.requireNonNull(ByteBufferTest.class.getClassLoader().getResource("data.txt")).getFile();
         try (FileChannel channel = new FileInputStream(fileName).getChannel()) {
             // 准备缓冲区
             ByteBuffer buffer = ByteBuffer.allocate(10);
