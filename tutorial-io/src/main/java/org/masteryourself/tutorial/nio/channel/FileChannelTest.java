@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
 
 /**
- * <p>description : ChannelTest
+ * <p>description : FileChannelTest
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -13,13 +13,14 @@ import java.nio.channels.FileChannel;
  * @version : 1.0.0
  * @date : 2022/4/8 1:06 AM
  */
-public class ChannelTest {
+public class FileChannelTest {
 
     public static void main(String[] args) {
         try (
                 FileChannel from = new FileInputStream("file/tutorial-io/data.txt").getChannel();
-                FileChannel to = new FileOutputStream("file/tutorial-io/to.txt").getChannel();) {
-            // 效率高, 底层会使用操作系统的零拷贝进行优化
+                FileChannel to = new FileOutputStream("file/tutorial-io/to.txt").getChannel();
+        ) {
+            // 效率高, 底层会使用操作系统的零拷贝进行优化, 上限是 2G
             from.transferTo(0, from.size(), to);
         } catch (Exception e) {
             e.printStackTrace();
