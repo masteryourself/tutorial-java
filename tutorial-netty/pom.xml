@@ -9,7 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tutorial-io</artifactId>
+    <artifactId>tutorial-netty</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>tutorial-netty-helloworld</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

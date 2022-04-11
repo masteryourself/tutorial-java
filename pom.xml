@@ -14,11 +14,11 @@
         <module>tutorial-algorithm</module>
         <module>tutorial-kafka</module>
         <module>tutorial-dubbo</module>
-        <module>tutorial-tk-mybatis</module>
         <module>tutorial-sharding</module>
         <module>tutorial-mybatis</module>
         <module>tutorial-juc</module>
-        <module>tutorial-io</module>
+        <module>tutorial-nio</module>
+        <module>tutorial-netty</module>
     </modules>
 
     <properties>
