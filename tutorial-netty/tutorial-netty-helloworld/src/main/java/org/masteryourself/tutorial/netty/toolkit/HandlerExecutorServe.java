@@ -1,17 +1,17 @@
-package org.masteryourself.tutorial.netty.helloworld;
+package org.masteryourself.tutorial.netty.toolkit;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>description : NettyServe
+ * <p>description : HandlerExecutorServe
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -20,9 +20,10 @@ import lombok.extern.slf4j.Slf4j;
  * @date : 2022/4/11 12:57 PM
  */
 @Slf4j
-public class NettyServe {
+public class HandlerExecutorServe {
 
     public static void main(String[] args) {
+        EventLoopGroup executors = new DefaultEventLoopGroup(2);
         new ServerBootstrap()
                 // 1. 创建 NioEventLoopGroup，可以简单理解为 线程池 + Selector
                 .group(new NioEventLoopGroup(), new NioEventLoopGroup())
@@ -32,10 +33,11 @@ public class NettyServe {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) throws Exception {
+                        ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
                         // 5. SocketChannel 的处理器，解码 ByteBuf => String
                         ch.pipeline().addLast(new StringDecoder());
-                        // 6. SocketChannel 的自定义处理器，使用上一个处理器的处理结果
-                        ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
+                        // 6. 指定一个异步线程去处理
+                        ch.pipeline().addLast(executors, "custom", new SimpleChannelInboundHandler<String>() {
                             @Override
                             protected void channelRead0(ChannelHandlerContext channelHandlerContext, String msg) throws Exception {
                                 log.info("收到消息 {}", msg);

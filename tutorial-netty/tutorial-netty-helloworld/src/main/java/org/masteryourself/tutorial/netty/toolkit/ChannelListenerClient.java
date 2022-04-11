@@ -1,8 +1,8 @@
-package org.masteryourself.tutorial.netty.helloworld;
+package org.masteryourself.tutorial.netty.toolkit;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -11,7 +11,7 @@ import io.netty.handler.codec.string.StringEncoder;
 import java.util.Date;
 
 /**
- * <p>description : NettyClient
+ * <p>description : ChannelListenerClient
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -19,7 +19,7 @@ import java.util.Date;
  * @version : 1.0.0
  * @date : 2022/4/11 12:57 PM
  */
-public class NettyClient {
+public class ChannelListenerClient {
 
     public static void main(String[] args) throws Exception {
         ChannelFuture channelFuture = new Bootstrap()
@@ -37,12 +37,11 @@ public class NettyClient {
                 })
                 // 4. 指定要连接的服务器和端口
                 .connect("127.0.0.1", 9527);
-        // 5. Netty 中很多方法都是异步的，如 connect，这时需要使用 sync 方法等待 connect 建立连接完毕
-        channelFuture.sync();
-        // 6. 获取 channel 对象，它即为通道抽象，可以进行数据读写操作
-        Channel channel = channelFuture.channel();
-        // 7. 写入消息并清空缓冲区
-        channel.writeAndFlush(new Date() + ":hello world!");
+        // 5. 使用监听器回调
+        channelFuture.addListener((ChannelFutureListener) future ->
+                // 6. 此时 channel 已经建立好，发送消息
+                future.channel().writeAndFlush(new Date() + ":hello world!")
+        );
     }
 
 }
