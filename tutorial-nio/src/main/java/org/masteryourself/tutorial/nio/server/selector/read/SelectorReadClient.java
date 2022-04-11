@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.nio.nio.selector.read;
+package org.masteryourself.tutorial.nio.server.selector.read;
 
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;

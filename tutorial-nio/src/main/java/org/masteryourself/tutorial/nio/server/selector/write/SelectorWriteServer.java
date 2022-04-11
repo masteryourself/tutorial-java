@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.nio.nio.selector.write;
+package org.masteryourself.tutorial.nio.server.selector.write;
 
 import lombok.extern.slf4j.Slf4j;
 

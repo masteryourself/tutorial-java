@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.nio.nio.nonblock;
+package org.masteryourself.tutorial.nio.server.nonblock;
 
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;

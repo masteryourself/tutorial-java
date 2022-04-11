@@ -1,19 +1,19 @@
-package org.masteryourself.tutorial.nio.nio.block;
+package org.masteryourself.tutorial.nio.server.selector.multi;
 
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 
 /**
- * <p>description : BlockingClient
+ * <p>description : SelectorMultiClient
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2022/4/8 5:55 PM
+ * @date : 2022/4/9 5:37 PM
  */
-public class BlockingClient {
+public class SelectorMultiClient {
 
     public static void main(String[] args) throws Exception {
         SocketChannel sc = SocketChannel.open();

@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.nio.nio.selector.multi;
+package org.masteryourself.tutorial.nio.server.selector.multi;
 
 import lombok.extern.slf4j.Slf4j;
 
