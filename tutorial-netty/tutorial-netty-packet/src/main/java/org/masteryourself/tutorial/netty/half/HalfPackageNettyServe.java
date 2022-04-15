@@ -1,6 +1,7 @@
 package org.masteryourself.tutorial.netty.half;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -22,15 +23,27 @@ import lombok.extern.slf4j.Slf4j;
 public class HalfPackageNettyServe {
 
     public static void main(String[] args) {
-        new ServerBootstrap()
-                .group(new NioEventLoopGroup(), new NioEventLoopGroup())
-                .channel(NioServerSocketChannel.class)
-                .childHandler(new ChannelInitializer<NioSocketChannel>() {
-                    @Override
-                    protected void initChannel(NioSocketChannel ch) throws Exception {
-                        ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
-                    }
-                }).bind(9527);
+        NioEventLoopGroup boos = new NioEventLoopGroup(1);
+        NioEventLoopGroup work = new NioEventLoopGroup();
+        try {
+            ChannelFuture channelFuture = new ServerBootstrap()
+                    .group(boos, work)
+                    .channel(NioServerSocketChannel.class)
+                    .childHandler(new ChannelInitializer<NioSocketChannel>() {
+                        @Override
+                        protected void initChannel(NioSocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
+                        }
+                    })
+                    .bind(9527);
+            channelFuture.sync();
+            channelFuture.channel().closeFuture().sync();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        } finally {
+            boos.shutdownGracefully();
+            work.shutdownGracefully();
+        }
     }
 
 }
