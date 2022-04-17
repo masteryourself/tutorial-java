@@ -42,7 +42,6 @@ public class ChatClient {
                             IdleStateEvent event = (IdleStateEvent) evt;
                             // 触发了写空闲事件
                             if (event.state() == IdleState.WRITER_IDLE) {
-                                log.info("3s 没有写数据了，发送一个心跳包");
                                 ctx.writeAndFlush(new PingMessage());
                             }
                         }
