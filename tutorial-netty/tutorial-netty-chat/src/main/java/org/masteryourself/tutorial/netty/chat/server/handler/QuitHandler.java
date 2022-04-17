@@ -32,8 +32,8 @@ public class QuitHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        SessionFactory.getSession().unbind(ctx.channel());
         log.error(cause.getMessage(), cause);
+        SessionFactory.getSession().unbind(ctx.channel());
     }
 
 }

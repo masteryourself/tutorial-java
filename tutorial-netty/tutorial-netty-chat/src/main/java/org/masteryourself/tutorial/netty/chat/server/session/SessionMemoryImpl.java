@@ -9,7 +9,7 @@ public class SessionMemoryImpl implements Session {
 
     private final Map<String, Channel> usernameChannelMap = new ConcurrentHashMap<>();
     private final Map<Channel, String> channelUsernameMap = new ConcurrentHashMap<>();
-    private final Map<Channel,Map<String,Object>> channelAttributesMap = new ConcurrentHashMap<>();
+    private final Map<Channel, Map<String, Object>> channelAttributesMap = new ConcurrentHashMap<>();
 
     @Override
     public void bind(Channel channel, String username) {
@@ -21,8 +21,10 @@ public class SessionMemoryImpl implements Session {
     @Override
     public void unbind(Channel channel) {
         String username = channelUsernameMap.remove(channel);
-        usernameChannelMap.remove(username);
-        channelAttributesMap.remove(channel);
+        if (username != null) {
+            usernameChannelMap.remove(username);
+            channelAttributesMap.remove(channel);
+        }
     }
 
     @Override

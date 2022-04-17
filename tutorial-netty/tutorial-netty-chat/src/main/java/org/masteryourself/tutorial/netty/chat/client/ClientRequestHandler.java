@@ -92,6 +92,8 @@ public class ClientRequestHandler extends ChannelInboundHandlerAdapter {
                 }
             }
         }, "SYSTEM IN").start();
+        // 继续调用 chain
+        super.channelActive(ctx);
     }
 
     @Override
