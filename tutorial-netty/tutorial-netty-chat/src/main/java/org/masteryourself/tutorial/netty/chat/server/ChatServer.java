@@ -33,6 +33,7 @@ public class ChatServer {
                     ch.pipeline().addLast(new GroupJoinRequestMessageHandler());
                     ch.pipeline().addLast(new GroupQuitRequestMessageHandler());
                     ch.pipeline().addLast(new GroupMembersRequestMessageHandler());
+                    ch.pipeline().addLast(new QuitHandler());
                 }
             });
             Channel channel = serverBootstrap.bind(8080).sync().channel();
