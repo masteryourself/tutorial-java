@@ -3,21 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>tutorial-java</artifactId>
+        <artifactId>tutorial-netty</artifactId>
         <groupId>org.masteryourself.tutorial</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tutorial-netty</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tutorial-netty-helloworld</module>
-        <module>tutorial-netty-packet</module>
-        <module>tutorial-netty-protocol</module>
-        <module>tutorial-netty-chat</module>
-        <module>tutorial-netty-rpc</module>
-    </modules>
+    <artifactId>tutorial-netty-rpc</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -26,9 +18,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.51.Final</version>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.9</version>
         </dependency>
     </dependencies>
 
