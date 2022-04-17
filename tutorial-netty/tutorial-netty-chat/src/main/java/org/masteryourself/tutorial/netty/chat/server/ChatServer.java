@@ -9,7 +9,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.netty.chat.protocol.MessageCodecSharable;
 import org.masteryourself.tutorial.netty.chat.protocol.ProcotolFrameDecoder;
-import org.masteryourself.tutorial.netty.chat.server.handler.LoginRequestHandler;
+import org.masteryourself.tutorial.netty.chat.server.handler.ChatRequestMessageHandler;
+import org.masteryourself.tutorial.netty.chat.server.handler.LoginRequestMessageHandler;
 
 @Slf4j
 public class ChatServer {
@@ -26,7 +27,8 @@ public class ChatServer {
                 protected void initChannel(SocketChannel ch) throws Exception {
                     ch.pipeline().addLast(new ProcotolFrameDecoder());
                     ch.pipeline().addLast(MESSAGE_CODEC);
-                    ch.pipeline().addLast(new LoginRequestHandler());
+                    ch.pipeline().addLast(new LoginRequestMessageHandler());
+                    ch.pipeline().addLast(new ChatRequestMessageHandler());
                 }
             });
             Channel channel = serverBootstrap.bind(8080).sync().channel();
