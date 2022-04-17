@@ -1,15 +1,16 @@
 package org.masteryourself.tutorial.netty.rpc.client;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelInitializer;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultPromise;
 import lombok.extern.slf4j.Slf4j;
+import org.masteryourself.tutorial.netty.rpc.message.PingMessage;
 import org.masteryourself.tutorial.netty.rpc.message.RpcRequestMessage;
 import org.masteryourself.tutorial.netty.rpc.protocol.MessageCodecSharable;
 import org.masteryourself.tutorial.netty.rpc.protocol.ProcotolFrameDecoder;
@@ -90,21 +91,21 @@ public class RpcClient {
                     ch.pipeline().addLast(MESSAGE_CODEC);
                     // 业务处理
                     ch.pipeline().addLast(new ClientRequestHandler());
-//                    // 用来判断是不是[读空闲时间过长]，或[写空闲时间过长]
-//                    // 3s 内如果没有向服务器写数据，会触发一个 IdleState#WRITER_IDLE 事件
-//                    ch.pipeline().addLast(new IdleStateHandler(0, 3, 0));
-//                    // ChannelDuplexHandler 可以同时作为入站和出站处理器
-//                    ch.pipeline().addLast(new ChannelDuplexHandler() {
-//                        // 用来触发特殊事件
-//                        @Override
-//                        public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-//                            IdleStateEvent event = (IdleStateEvent) evt;
-//                            // 触发了写空闲事件
-//                            if (event.state() == IdleState.WRITER_IDLE) {
-//                                ctx.writeAndFlush(new PingMessage());
-//                            }
-//                        }
-//                    });
+                    // 用来判断是不是[读空闲时间过长]，或[写空闲时间过长]
+                    // 3s 内如果没有向服务器写数据，会触发一个 IdleState#WRITER_IDLE 事件
+                    ch.pipeline().addLast(new IdleStateHandler(0, 3, 0));
+                    // ChannelDuplexHandler 可以同时作为入站和出站处理器
+                    ch.pipeline().addLast(new ChannelDuplexHandler() {
+                        // 用来触发特殊事件
+                        @Override
+                        public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+                            IdleStateEvent event = (IdleStateEvent) evt;
+                            // 触发了写空闲事件
+                            if (event.state() == IdleState.WRITER_IDLE) {
+                                ctx.writeAndFlush(new PingMessage());
+                            }
+                        }
+                    });
                 }
             });
             // 这里需要 sync 同步确保连接建立

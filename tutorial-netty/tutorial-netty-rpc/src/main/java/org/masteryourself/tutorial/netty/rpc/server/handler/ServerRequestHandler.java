@@ -23,7 +23,6 @@ public class ServerRequestHandler extends SimpleChannelInboundHandler<RpcRequest
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcRequestMessage msg) throws Exception {
-        log.info("服务端接收到消息 {}", msg);
         RpcResponseMessage response = new RpcResponseMessage();
         response.setSequenceId(msg.getSequenceId());
         try {
