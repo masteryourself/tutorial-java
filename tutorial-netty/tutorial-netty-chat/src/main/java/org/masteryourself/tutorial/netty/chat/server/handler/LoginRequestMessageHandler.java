@@ -28,9 +28,9 @@ public class LoginRequestMessageHandler extends SimpleChannelInboundHandler<org.
             // 存储到会话中
             SessionFactory.getSession().bind(ctx.channel(), userName);
             ctx.writeAndFlush(new LoginResponseMessage(true, "登录成功"));
-        } else {
-            ctx.writeAndFlush(new LoginResponseMessage(false, "登录失败"));
+            return;
         }
+        ctx.writeAndFlush(new LoginResponseMessage(false, "登录失败"));
     }
 
 }

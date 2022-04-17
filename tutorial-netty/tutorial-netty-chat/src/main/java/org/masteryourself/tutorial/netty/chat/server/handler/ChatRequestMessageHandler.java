@@ -27,10 +27,10 @@ public class ChatRequestMessageHandler extends SimpleChannelInboundHandler<ChatR
         if (channel != null) {
             // 在线就发送给对方
             channel.writeAndFlush(new ChatResponseMessage(msg.getFrom(), msg.getContent()));
-        } else {
-            // 不在线就提醒给发送人
-            ctx.writeAndFlush(new ChatResponseMessage(false, "对方用户不在线"));
+            return;
         }
+        // 不在线就提醒给发送人
+        ctx.writeAndFlush(new ChatResponseMessage(false, "对方用户不在线"));
     }
 
 }
