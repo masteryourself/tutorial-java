@@ -2,6 +2,7 @@ package org.masteryourself.tutorial.netty.chat.client;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.netty.chat.message.*;
 
 import java.util.Arrays;
@@ -20,6 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @version : 1.0.0
  * @date : 2022/4/17 11:29 AM
  */
+@Slf4j
 public class ClientRequestHandler extends ChannelInboundHandlerAdapter {
 
     private final CountDownLatch WAIT_FOR_LOGIN = new CountDownLatch(1);
@@ -43,7 +45,7 @@ public class ClientRequestHandler extends ChannelInboundHandlerAdapter {
                 try {
                     WAIT_FOR_LOGIN.await();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    log.error(e.getMessage(), e);
                 }
                 // 如果登录失败
                 if (!LOGIN_FLAG.get()) {

@@ -77,7 +77,7 @@ public class SelectorReadServer {
                                 }
                             }
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            log.error(e.getMessage(), e);
                             // 因为客户端断开了,因此需要将 key 取消（从 selector 的 keys 集合中真正删除 key）
                             selectionKey.cancel();
                         }

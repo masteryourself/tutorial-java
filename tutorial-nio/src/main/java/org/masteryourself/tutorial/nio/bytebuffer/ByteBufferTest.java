@@ -39,7 +39,7 @@ public class ByteBufferTest {
                 buffer.clear();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
     }
 
