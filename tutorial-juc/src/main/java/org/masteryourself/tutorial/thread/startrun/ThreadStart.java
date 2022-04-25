@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.juc.startrun;
+package org.masteryourself.tutorial.thread.startrun;
 
 import lombok.extern.slf4j.Slf4j;
 

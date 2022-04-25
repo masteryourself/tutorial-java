@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.juc.threadcreate;
+package org.masteryourself.tutorial.thread.threadcreate;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.juc.join;
+package org.masteryourself.tutorial.thread.join;
 
 import lombok.extern.slf4j.Slf4j;
 

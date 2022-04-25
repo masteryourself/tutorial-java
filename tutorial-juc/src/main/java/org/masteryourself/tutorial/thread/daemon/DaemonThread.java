@@ -1,36 +1,36 @@
-package org.masteryourself.tutorial.juc.interrupt;
+package org.masteryourself.tutorial.thread.daemon;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>description : InterruptSleep
+ * <p>description : DaemonThread
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2022/4/25 11:08 AM
+ * @date : 2022/4/25 3:00 PM
  */
 @Slf4j
-public class InterruptSleep {
+public class DaemonThread {
 
     public static void main(String[] args) throws Exception {
         Thread t1 = new Thread(() -> {
+            log.info("子线程运行开始");
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
                 log.error(e.getMessage(), e);
             }
+            log.info("子线程运行结束");
         }, "t1");
+        // 设置该线程为守护线程
+        t1.setDaemon(true);
         t1.start();
         TimeUnit.MILLISECONDS.sleep(100);
-        // t1 interrupt 状态是 false
-        log.info("t1 interrupt 状态是 {}", t1.isInterrupted());
-        t1.interrupt();
-        // t1 interrupt 状态是 true
-        log.info("t1 interrupt 状态是 {}", t1.isInterrupted());
+        log.info("主线程运行完成");
     }
 
 }

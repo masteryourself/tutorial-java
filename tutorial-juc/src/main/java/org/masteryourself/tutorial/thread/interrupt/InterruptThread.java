@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.juc.interrupt;
+package org.masteryourself.tutorial.thread.interrupt;
 
 import lombok.extern.slf4j.Slf4j;
 
