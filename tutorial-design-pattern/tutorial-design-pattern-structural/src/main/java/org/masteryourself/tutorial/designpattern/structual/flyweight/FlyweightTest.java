@@ -1,5 +1,7 @@
 package org.masteryourself.tutorial.designpattern.structual.flyweight;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -11,6 +13,7 @@ import java.util.concurrent.TimeUnit;
  * @version : 1.0.0
  * @date : 2022/3/5 3:05 PM
  */
+@Slf4j
 public class FlyweightTest {
 
     public static void main(String[] args) throws Exception {
@@ -31,7 +34,7 @@ public class FlyweightTest {
             try {
                 TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error(e.getMessage(), e);
             }
             waitress.stop(customer);
         }).start();

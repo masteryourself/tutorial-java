@@ -44,7 +44,7 @@ public class ThreadMultiJoin {
         // 因此在等待 t2 时, 只需要在等待 1s 即可
         t2.join();
         long end = System.currentTimeMillis();
-        log.debug("r1: {} r2: {} cost: {}", r1, r2, end - start);
+        log.info("r1: {} r2: {} cost: {}", r1, r2, end - start);
     }
 
 }

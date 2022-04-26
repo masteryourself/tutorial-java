@@ -23,7 +23,7 @@ public class InterruptThread {
                 boolean interrupted = current.isInterrupted();
                 if (interrupted) {
                     // 打断状态: true
-                    log.debug(" 打断状态: {}", interrupted);
+                    log.info(" 打断状态: {}", interrupted);
                     break;
                 }
             }
