@@ -1,7 +1,7 @@
 package org.masteryourself.tutorial.jvm.stack;
 
 /**
- * <p>description : StackOverflow
+ * <p>description : 栈内存溢出问题演示
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -14,7 +14,7 @@ public class StackOverflow {
     private static int count = 1;
 
     /**
-     * 添加 VM 参数 -xss26k
+     * 添加 VM 参数 -Xss256k
      */
     public static void main(String[] args) {
         try {
