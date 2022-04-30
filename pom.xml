@@ -19,6 +19,7 @@
         <module>tutorial-juc</module>
         <module>tutorial-nio</module>
         <module>tutorial-netty</module>
+        <module>tutorial-jvm</module>
     </modules>
 
     <properties>
