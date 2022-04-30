@@ -12,24 +12,21 @@ import java.util.List;
  * @version : 1.0.0
  * @date : 2022/4/30 3:28 PM
  */
-public class OutOfMemoryErrorDemo {
+public class JavaHeapSpaceDemo {
 
     /**
      * 添加 VM 参数 -Xmx8m
      */
     public static void main(String[] args) {
-        int i = 0;
         try {
             List<String> list = new ArrayList<>();
             String str = "hello";
             while (true) {
                 list.add(str);
                 str = str + str;
-                i++;
             }
         } catch (Throwable e) {
             e.printStackTrace();
-            System.out.println(i);
         }
     }
 
