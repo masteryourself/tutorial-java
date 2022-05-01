@@ -1,7 +1,7 @@
 package org.masteryourself.tutorial.jvm.stringtable;
 
 /**
- * <p>description : StringTableGarbageCollection
+ * <p>description : 串池垃圾回收
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *

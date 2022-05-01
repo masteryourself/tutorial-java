@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>description : DirectBufferMemoryDemo
+ * <p>description : 直接内存溢出案例
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *

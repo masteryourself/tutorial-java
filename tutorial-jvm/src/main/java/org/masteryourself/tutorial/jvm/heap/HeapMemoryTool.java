@@ -1,7 +1,7 @@
 package org.masteryourself.tutorial.jvm.heap;
 
 /**
- * <p>description : HeapMemoryTool
+ * <p>description : 堆内存排查工具使用
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *

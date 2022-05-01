@@ -4,7 +4,7 @@ import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.Opcodes;
 
 /**
- * <p>description : 元空间内存溢出
+ * <p>description : 元空间内存溢出案例
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>description : 堆内存溢出问题演示
+ * <p>description : 堆内存溢出案例
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *

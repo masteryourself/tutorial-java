@@ -5,7 +5,7 @@ import sun.misc.Unsafe;
 import java.lang.reflect.Field;
 
 /**
- * <p>description : DirectMemoryAllocate
+ * <p>description : 直接内存的分配与回收
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *

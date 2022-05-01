@@ -1,7 +1,7 @@
 package org.masteryourself.tutorial.jvm.stack;
 
 /**
- * <p>description : 栈内存溢出问题演示
+ * <p>description : 栈内存溢出案例
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *

@@ -1,7 +1,7 @@
 package org.masteryourself.tutorial.jvm.stringtable;
 
 /**
- * <p>description : StringInternalTest2
+ * <p>description : 串池面试题2
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
