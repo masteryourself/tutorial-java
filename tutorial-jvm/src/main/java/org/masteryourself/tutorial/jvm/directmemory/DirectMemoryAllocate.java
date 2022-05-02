@@ -16,12 +16,12 @@ import java.lang.reflect.Field;
 public class DirectMemoryAllocate {
 
     public static void main(String[] args) {
-        int ONE_G = 1 * 1024 * 1024 * 1024;
+        int _1GB = 1 * 1024 * 1024 * 1024;
         Unsafe unsafe = getUnsafe();
         // 利用 unsafe 分配 1G 内存
         // 这个方法返回的是刚刚分配的内存地址, 需要结合 setMemory() 方法使用
-        long memoryAddress = unsafe.allocateMemory(ONE_G);
-        unsafe.setMemory(memoryAddress, ONE_G, (byte) 0);
+        long memoryAddress = unsafe.allocateMemory(_1GB);
+        unsafe.setMemory(memoryAddress, _1GB, (byte) 0);
         // 释放内存
         unsafe.freeMemory(memoryAddress);
     }

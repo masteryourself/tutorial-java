@@ -2,12 +2,12 @@ package org.masteryourself.tutorial.jvm.reference;
 
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
-import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>description : 软引用案例
+ * <p>description : 弱引用案例
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -15,7 +15,7 @@ import java.util.List;
  * @version : 1.0.0
  * @date : 2022/5/1 11:21 AM
  */
-public class SoftReferenceDemo {
+public class WeakReferenceDemo {
 
     private static final int _4MB = 4 * 1024 * 1204;
 
@@ -26,12 +26,12 @@ public class SoftReferenceDemo {
         // 引用队列
         ReferenceQueue<byte[]> queue = new ReferenceQueue<>();
         // 添加软引用
-        List<SoftReference<byte[]>> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        List<WeakReference<byte[]>> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
             // 关联引用队列, 当软引用所关联的 byte[] 数组被回收时, 软引用自己会加入到 queue 中
-            SoftReference<byte[]> softReference = new SoftReference<>(new byte[_4MB], queue);
-            list.add(softReference);
-            for (SoftReference<byte[]> reference : list) {
+            WeakReference<byte[]> weakReference = new WeakReference<>(new byte[_4MB], queue);
+            list.add(weakReference);
+            for (WeakReference<byte[]> reference : list) {
                 System.out.print(reference.get() + "  ");
             }
             System.out.println();
@@ -44,7 +44,7 @@ public class SoftReferenceDemo {
         }
         System.out.println("遍历集合中的元素");
         // 看看还剩下多少
-        for (SoftReference<byte[]> reference : list) {
+        for (WeakReference<byte[]> reference : list) {
             System.out.print(reference.get() + "  ");
         }
         System.out.println();
