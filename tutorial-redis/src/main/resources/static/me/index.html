@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.js"></script>
+</head>
+<body>
+<form>
+    <button type="button" onclick="me()">查看个人信息</button>
+    <textarea id="meInfo"></textarea>
+</form>
+</body>
+
+<script type="text/javascript">
+    function me() {
+        // 从 localStorage 中获取 token, 然后携带到 header 中
+        let user = localStorage.getItem("user")
+        $.ajax({
+            type: 'POST',
+            url: '/user/me',
+            headers: {'authorization': user},
+            success: function (data) {
+                $("#meInfo").text(JSON.stringify(data.data))
+            },
+            error: function () {
+
+            }
+        });
+    }
+</script>
+
+</html>

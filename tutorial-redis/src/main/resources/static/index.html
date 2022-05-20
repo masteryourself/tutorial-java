@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.js"></script>
+</head>
+<body>
+<form>
+    请输入手机号:<input id="phone" type="text" name="phone">
+    <button type="button" onclick="sendCode()">发送验证码</button>
+    <br/>
+    请输入验证码<input id="code" type="text" name="code">
+    <button type="button" onclick="login()">登录</button>
+</form>
+</body>
+
+<script type="text/javascript">
+    function sendCode() {
+        let phone = $("#phone").val();
+        $.ajax({
+            type: 'POST',
+            url: '/user/sendCode',
+            data: {
+                phone: phone
+            },
+            dataType: 'json',
+            success: function (data) {
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    function login() {
+        let phone = $("#phone").val();
+        let code = $("#code").val();
+        $.ajax({
+            type: 'POST',
+            url: '/user/login',
+            data: {
+                phone: phone,
+                code: code
+            },
+            dataType: 'json',
+            success: function (data) {
+                // 将 token 存储在 localStorage 中, 以后每次发送请求时都会携带
+                localStorage.setItem("user", data.data);
+                // 登录成功后跳转到我的页面
+                window.location.href = "/me/index.html";
+            },
+            error: function () {
+
+            }
+        });
+    }
+</script>
+
+</html>
