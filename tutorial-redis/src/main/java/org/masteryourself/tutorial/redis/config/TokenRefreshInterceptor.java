@@ -3,6 +3,7 @@ package org.masteryourself.tutorial.redis.config;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import org.masteryourself.tutorial.redis.domain.User;
+import org.masteryourself.tutorial.redis.utils.RedisConstants;
 import org.masteryourself.tutorial.redis.utils.UserHolder;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -38,7 +39,7 @@ public class TokenRefreshInterceptor implements HandlerInterceptor {
             return true;
         }
         // 2. 从 redis 中获取用户信息
-        String redisKey = "user:token:" + authorizationToken;
+        String redisKey = RedisConstants.USER_TOKEN_KEY + authorizationToken;
         Map<Object, Object> userMap = stringRedisTemplate.opsForHash().entries(redisKey);
         // 3. 判断用户是否存在
         if (userMap.isEmpty()) {
@@ -49,7 +50,7 @@ public class TokenRefreshInterceptor implements HandlerInterceptor {
         // 5. 存在，保存用户信息到 ThreadLocal
         UserHolder.saveUser(user);
         // 6. 刷新 token 有效期
-        stringRedisTemplate.expire(redisKey, 30, TimeUnit.MINUTES);
+        stringRedisTemplate.expire(redisKey, RedisConstants.USER_TOKEN_TTL, TimeUnit.MINUTES);
         return true;
     }
 

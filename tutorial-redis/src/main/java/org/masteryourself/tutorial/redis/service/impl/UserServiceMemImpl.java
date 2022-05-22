@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.redis.domain.User;
 import org.masteryourself.tutorial.redis.dto.Result;
 import org.masteryourself.tutorial.redis.service.UserService;
+import org.masteryourself.tutorial.redis.utils.RedisConstants;
 import org.masteryourself.tutorial.redis.utils.RegexUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -52,7 +53,7 @@ public class UserServiceMemImpl implements UserService {
         // 2. 符合，生成验证码
         String code = RandomUtil.randomNumbers(6);
         // 3. 保存验证码
-        stringRedisTemplate.opsForValue().set("user：login" + phone, code, 5, TimeUnit.MINUTES);
+        stringRedisTemplate.opsForValue().set(RedisConstants.USER_CODE_KEY + phone, code, RedisConstants.USER_CODE_TTL, TimeUnit.MINUTES);
         // 4. 发送验证码
         log.info("发送短信验证码成功，验证码：{}", code);
         return Result.ok();
@@ -65,7 +66,7 @@ public class UserServiceMemImpl implements UserService {
             return Result.fail("手机号格式错误！");
         }
         // 2. 从 redis 获取验证码并校验
-        String cacheCode = stringRedisTemplate.opsForValue().get("user：login" + phone);
+        String cacheCode = stringRedisTemplate.opsForValue().get(RedisConstants.USER_CODE_KEY + phone);
         if (cacheCode == null || !cacheCode.equals(code)) {
             return Result.fail("验证码错误");
         }
@@ -80,7 +81,7 @@ public class UserServiceMemImpl implements UserService {
         }
         // 5. 保存用户信息到 redis 中, 表示已经完成登录
         String token = UUID.randomUUID().toString(true);
-        String tokenKey = "user:token:" + token;
+        String tokenKey = RedisConstants.USER_TOKEN_KEY + token;
         // 需要全部转成 string
         stringRedisTemplate.opsForHash().putAll(tokenKey,
                 BeanUtil.beanToMap(user, new HashMap<>(), CopyOptions.create()
