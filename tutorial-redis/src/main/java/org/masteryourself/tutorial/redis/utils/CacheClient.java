@@ -2,7 +2,9 @@ package org.masteryourself.tutorial.redis.utils;
 
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.redis.dto.RedisData;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,7 @@ import java.util.function.Function;
  * @version : 1.0.0
  * @date : 2022/5/22 9:05 PM
  */
+@Slf4j
 @Component
 public class CacheClient {
 
@@ -52,7 +55,7 @@ public class CacheClient {
     }
 
     /**
-     * 缓存穿透解决方案:缓存空对象
+     * 缓存穿透解决方案: 缓存空对象
      *
      * @param keyPrefix  key 前缀
      * @param id         主键标识
@@ -109,7 +112,46 @@ public class CacheClient {
     public <R, ID> R queryWithMutex(String keyPrefix, ID id, Class<R> type,
                                     Function<ID, R> dbFallback,
                                     Long time, TimeUnit unit) {
-        return null;
+        // 1. 构建 redis key
+        String key = keyPrefix + id;
+        // 2. 从 redis 中查找缓存数据
+        String json = stringRedisTemplate.opsForValue().get(key);
+        // 3. 判断缓存中的数据是否为无效值
+        if (Objects.equals(json, RedisConstants.CACHE_PASS_THROUGH_INVALID_FLAG)) {
+            // 说明是无效值, 缓存穿透了, 直接返回
+            return null;
+        }
+        // 4. 如果缓存中有数据且不为无效值直接返回
+        if (StrUtil.isNotBlank(json)) {
+            return JSONUtil.toBean(json, type);
+        }
+        // 5. 互斥锁实现缓存重建
+        R result = null;
+        String lockKey = RedisConstants.LOCK_KEY_PREFIX + key;
+        try {
+            // 6. 如果获取锁失败, 说明已经有线程在更新缓存, 这里进入重试即可
+            if (!tryLock(lockKey)) {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    log.error(e.getMessage(), e);
+                }
+                return this.queryWithMutex(keyPrefix, id, type, dbFallback, time, unit);
+            }
+            // 7. 如果获取锁成功, 则执行查询逻辑
+            result = dbFallback.apply(id);
+            // 5.3 如果不存在，则缓存无效值, 避免缓存穿透
+            if (result == null) {
+                this.set(key, RedisConstants.CACHE_PASS_THROUGH_INVALID_FLAG,
+                        RedisConstants.CACHE_PASS_THROUGH_INVALID_TTL, TimeUnit.SECONDS);
+                return null;
+            }
+            // 8. 如果加载到数据, 放入到缓存中
+            this.set(key, result, time, unit);
+        } finally {
+            this.unlock(lockKey);
+        }
+        return result;
     }
 
     /**
@@ -128,7 +170,45 @@ public class CacheClient {
     public <R, ID> R queryWithLogicalExpire(String keyPrefix, ID id, Class<R> type,
                                             Function<ID, R> dbFallback,
                                             Long time, TimeUnit unit) {
-        return null;
+        // 1. 构建 redis key
+        String key = keyPrefix + id;
+        // 2. 从 redis 中查找缓存数据
+        String json = stringRedisTemplate.opsForValue().get(key);
+        // 3. 判断缓存中的数据是否为无效值
+        if (Objects.equals(json, RedisConstants.CACHE_PASS_THROUGH_INVALID_FLAG)) {
+            // 说明是无效值, 缓存穿透了, 直接返回
+            return null;
+        }
+        // 4. 根据逻辑时间判断是否已经过期
+        RedisData redisData = JSONUtil.toBean(json, RedisData.class);
+        R result = JSONUtil.toBean((JSONObject) redisData.getData(), type);
+        LocalDateTime expireTime = redisData.getExpireTime();
+        // 5. 未过期直接返回
+        if (expireTime.isAfter(LocalDateTime.now())) {
+            return result;
+        }
+        // 6. 过期了则需要缓存重建
+        String lockKey = RedisConstants.LOCK_KEY_PREFIX + key;
+        // 7. 如果获取锁失败, 说明已经有线程在更新缓存, 这里直接返回旧数据即可
+        if (!tryLock(lockKey)) {
+            return result;
+        }
+        // 8. 如果获取锁成功, 则开启一个新线程处理缓存重建任务
+        cacheBuildThreadPool.submit(() -> {
+            try {
+                // 重建缓存
+                R result1 = dbFallback.apply(id);
+                if (result1 == null) {
+                    CacheClient.this.set(key, RedisConstants.CACHE_PASS_THROUGH_INVALID_FLAG,
+                            RedisConstants.CACHE_PASS_THROUGH_INVALID_TTL, TimeUnit.SECONDS);
+                } else {
+                    CacheClient.this.set(key, result1, time, unit);
+                }
+            } finally {
+                unlock(lockKey);
+            }
+        });
+        return result;
     }
 
     private boolean tryLock(String key) {

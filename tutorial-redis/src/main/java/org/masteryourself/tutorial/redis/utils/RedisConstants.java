@@ -29,4 +29,12 @@ public class RedisConstants {
     public static final String CACHE_PASS_THROUGH_INVALID_FLAG = "empty";
     public static final Long CACHE_PASS_THROUGH_INVALID_TTL = 10L;
 
+    /**
+     * 互斥锁前缀
+     */
+    public static final String LOCK_KEY_PREFIX = "lock:";
+
+    public static final String SHOP_KEY = "shop:";
+
+
 }
