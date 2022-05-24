@@ -182,12 +182,11 @@ public class CacheClient {
         // 4. 根据逻辑时间判断是否已经过期
         RedisData redisData = JSONUtil.toBean(json, RedisData.class);
         R result = JSONUtil.toBean((JSONObject) redisData.getData(), type);
-        LocalDateTime expireTime = redisData.getExpireTime();
-        // 5. 未过期直接返回
-        if (expireTime.isAfter(LocalDateTime.now())) {
+        // 5. 如果有数据而且未过期, 直接返回
+        if (result != null && redisData.getExpireTime().isAfter(LocalDateTime.now())) {
             return result;
         }
-        // 6. 过期了则需要缓存重建
+        // 6. 过期了或者缓存中无数据, 则需要缓存重建
         String lockKey = RedisConstants.LOCK_KEY_PREFIX + key;
         // 7. 如果获取锁失败, 说明已经有线程在更新缓存, 这里直接返回旧数据即可
         if (!tryLock(lockKey)) {
@@ -202,7 +201,7 @@ public class CacheClient {
                     CacheClient.this.set(key, RedisConstants.CACHE_PASS_THROUGH_INVALID_FLAG,
                             RedisConstants.CACHE_PASS_THROUGH_INVALID_TTL, TimeUnit.SECONDS);
                 } else {
-                    CacheClient.this.set(key, result1, time, unit);
+                    CacheClient.this.setWithLogicalExpire(key, result1, time, unit);
                 }
             } finally {
                 unlock(lockKey);

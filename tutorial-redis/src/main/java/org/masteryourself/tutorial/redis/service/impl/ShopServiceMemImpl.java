@@ -55,18 +55,28 @@ public class ShopServiceMemImpl implements ShopService {
 //                    }
 //                }, 10L, TimeUnit.SECONDS);
         // 缓存击穿: 互斥锁
-        Shop shop = cacheClient.queryWithMutex(RedisConstants.SHOP_KEY, id, Shop.class,
+//        Shop shop = cacheClient.queryWithMutex(RedisConstants.SHOP_KEY, id, Shop.class,
+//                new Function<Long, Shop>() {
+//                    @Override
+//                    public Shop apply(Long aLong) {
+//                        Shop res = SHOP_DB.stream().filter(shop -> shop.getId().equals(id)).findFirst().orElse(null);
+//                        log.info("从 db 中加载数据 {}", res);
+//                        try {
+//                            // 模拟查询耗时操作
+//                            TimeUnit.SECONDS.sleep(5);
+//                        } catch (InterruptedException e) {
+//                            log.error(e.getMessage(), e);
+//                        }
+//                        return res;
+//                    }
+//                }, 10L, TimeUnit.SECONDS);
+        // 缓存击穿：逻辑过期时间
+        Shop shop = cacheClient.queryWithLogicalExpire(RedisConstants.SHOP_KEY, id, Shop.class,
                 new Function<Long, Shop>() {
                     @Override
                     public Shop apply(Long aLong) {
                         Shop res = SHOP_DB.stream().filter(shop -> shop.getId().equals(id)).findFirst().orElse(null);
                         log.info("从 db 中加载数据 {}", res);
-                        try {
-                            // 模拟查询耗时操作
-                            TimeUnit.SECONDS.sleep(5);
-                        } catch (InterruptedException e) {
-                            log.error(e.getMessage(), e);
-                        }
                         return res;
                     }
                 }, 10L, TimeUnit.SECONDS);
@@ -83,8 +93,8 @@ public class ShopServiceMemImpl implements ShopService {
         }
         query.setName(update.getName());
         log.info("更新数据成功 {}", query);
-        // 2. 再删除缓存
-        stringRedisTemplate.delete(RedisConstants.SHOP_KEY + updateId);
+        // 2. 再删除缓存(缓存击穿-逻辑过期不用删除缓存)
+        // stringRedisTemplate.delete(RedisConstants.SHOP_KEY + updateId);
         return Result.ok(query);
     }
 
