@@ -34,7 +34,11 @@ public class RedisConstants {
      */
     public static final String LOCK_KEY_PREFIX = "lock:";
 
+    /**
+     * 商品缓存前缀
+     */
     public static final String SHOP_KEY = "shop:";
 
+    public static final String ID_GEN_KEY = "idgen:";
 
 }
