@@ -7,21 +7,20 @@ import cn.hutool.core.util.RandomUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.redis.domain.User;
 import org.masteryourself.tutorial.redis.dto.Result;
+import org.masteryourself.tutorial.redis.mapper.UserMapper;
 import org.masteryourself.tutorial.redis.service.UserService;
 import org.masteryourself.tutorial.redis.utils.RedisConstants;
 import org.masteryourself.tutorial.redis.utils.RegexUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>description : UserServiceMemImpl
+ * <p>description : UserServiceImpl
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -31,15 +30,10 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Service
-public class UserServiceMemImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
-    private static final List<User> USER_DB = new CopyOnWriteArrayList<>();
-
-    static {
-        USER_DB.add(new User(1L, "张三", "17621208646"));
-        USER_DB.add(new User(2L, "李四", "17621208647"));
-        USER_DB.add(new User(3L, "王五", "17621208648"));
-    }
+    @Resource
+    private UserMapper userMapper;
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
@@ -71,7 +65,9 @@ public class UserServiceMemImpl implements UserService {
             return Result.fail("验证码错误");
         }
         // 3. 查询用户信息
-        User user = USER_DB.stream().filter(user1 -> user1.getPhone().equals(phone)).findFirst().orElse(null);
+        Example example = new Example(User.class);
+        example.createCriteria().andEqualTo("phone", phone);
+        User user = userMapper.selectOneByExample(example);
         if (user == null) {
             // 4. 说明不存在首次注册
             user = this.create(phone);
@@ -94,14 +90,9 @@ public class UserServiceMemImpl implements UserService {
 
     private User create(String phone) {
         User user = new User();
-        User maxUser = USER_DB.stream().max(Comparator.comparingLong(User::getId)).orElse(null);
-        if (maxUser == null) {
-            user.setId(1L);
-        } else {
-            user.setId((maxUser.getId() + 1));
-        }
         user.setPhone(phone);
         user.setName("user_" + RandomUtil.randomString(10));
+        userMapper.insertSelective(user);
         return user;
     }
 

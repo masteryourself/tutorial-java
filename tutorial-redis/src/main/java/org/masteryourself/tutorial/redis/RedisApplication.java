@@ -2,6 +2,7 @@ package org.masteryourself.tutorial.redis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * <p>description : RedisApplication
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date : 2022/5/19 6:59 PM
  */
 @SpringBootApplication
+@MapperScan("org.masteryourself.tutorial.redis.mapper")
 public class RedisApplication {
 
     public static void main(String[] args) {

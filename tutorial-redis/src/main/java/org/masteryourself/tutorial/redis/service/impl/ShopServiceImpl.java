@@ -3,6 +3,7 @@ package org.masteryourself.tutorial.redis.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.redis.domain.Shop;
 import org.masteryourself.tutorial.redis.dto.Result;
+import org.masteryourself.tutorial.redis.mapper.ShopMapper;
 import org.masteryourself.tutorial.redis.service.ShopService;
 import org.masteryourself.tutorial.redis.utils.CacheClient;
 import org.masteryourself.tutorial.redis.utils.RedisConstants;
@@ -10,13 +11,11 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 /**
- * <p>description : ShopServiceMemImpl
+ * <p>description : ShopServiceImpl
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -26,15 +25,10 @@ import java.util.function.Function;
  */
 @Slf4j
 @Service
-public class ShopServiceMemImpl implements ShopService {
+public class ShopServiceImpl implements ShopService {
 
-    private static final List<Shop> SHOP_DB = new CopyOnWriteArrayList<>();
-
-    static {
-        SHOP_DB.add(new Shop(1L, "羊肉铺", "专门卖羊肉"));
-        SHOP_DB.add(new Shop(2L, "猪肉铺", "专门卖猪肉"));
-        SHOP_DB.add(new Shop(3L, "五金杂货店", "五金产品相关"));
-    }
+    @Resource
+    private ShopMapper shopMapper;
 
     @Resource
     private CacheClient cacheClient;
@@ -49,7 +43,7 @@ public class ShopServiceMemImpl implements ShopService {
 //                new Function<Long, Shop>() {
 //                    @Override
 //                    public Shop apply(Long aLong) {
-//                        Shop res = SHOP_DB.stream().filter(shop -> shop.getId().equals(id)).findFirst().orElse(null);
+//                        Shop res = shopMapper.selectByPrimaryKey(aLong);
 //                        log.info("从 db 中加载数据 {}", res);
 //                        return res;
 //                    }
@@ -59,7 +53,7 @@ public class ShopServiceMemImpl implements ShopService {
 //                new Function<Long, Shop>() {
 //                    @Override
 //                    public Shop apply(Long aLong) {
-//                        Shop res = SHOP_DB.stream().filter(shop -> shop.getId().equals(id)).findFirst().orElse(null);
+//                        Shop res = shopMapper.selectByPrimaryKey(aLong);
 //                        log.info("从 db 中加载数据 {}", res);
 //                        try {
 //                            // 模拟查询耗时操作
@@ -75,7 +69,7 @@ public class ShopServiceMemImpl implements ShopService {
                 new Function<Long, Shop>() {
                     @Override
                     public Shop apply(Long aLong) {
-                        Shop res = SHOP_DB.stream().filter(shop -> shop.getId().equals(id)).findFirst().orElse(null);
+                        Shop res = shopMapper.selectByPrimaryKey(aLong);
                         log.info("从 db 中加载数据 {}", res);
                         return res;
                     }
@@ -84,18 +78,16 @@ public class ShopServiceMemImpl implements ShopService {
     }
 
     @Override
-    public Result updateById(Shop update) {
-        Long updateId = update.getId();
+    public Result updateById(Shop shop) {
         // 1. 先更新 db
-        Shop query = SHOP_DB.stream().filter(shop -> shop.getId().equals(updateId)).findFirst().orElse(null);
-        if (query == null) {
+        int dbResult = shopMapper.updateByPrimaryKey(shop);
+        if (dbResult == 0) {
             return Result.fail("更新失败, 数据不存在");
         }
-        query.setName(update.getName());
-        log.info("更新数据成功 {}", query);
+        log.info("更新数据成功 {}", shop);
         // 2. 再删除缓存(缓存击穿-逻辑过期不用删除缓存)
-        // stringRedisTemplate.delete(RedisConstants.SHOP_KEY + updateId);
-        return Result.ok(query);
+        // stringRedisTemplate.delete(RedisConstants.SHOP_KEY + shop.getId());
+        return Result.ok(shop);
     }
 
 }
