@@ -25,7 +25,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 必须要求强制登录(只对部分资源)
         if (UserHolder.getUser() == null) {
-            log.warn("用户未登录, 拦截请求 {}", request.getPathInfo());
+            log.warn("用户未登录, 拦截请求 {}", request.getRequestURI());
             response.setStatus(401);
             return false;
         }

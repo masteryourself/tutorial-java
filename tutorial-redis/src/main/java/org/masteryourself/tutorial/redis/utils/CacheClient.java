@@ -127,7 +127,7 @@ public class CacheClient {
         }
         // 5. 互斥锁实现缓存重建
         R result = null;
-        String lockKey = RedisConstants.LOCK_KEY_PREFIX + key;
+        String lockKey = RedisConstants.LOCK_KEY + key;
         try {
             // 6. 如果获取锁失败, 说明已经有线程在更新缓存, 这里进入重试即可
             if (!tryLock(lockKey)) {
@@ -187,7 +187,7 @@ public class CacheClient {
             return result;
         }
         // 6. 过期了或者缓存中无数据, 则需要缓存重建
-        String lockKey = RedisConstants.LOCK_KEY_PREFIX + key;
+        String lockKey = RedisConstants.LOCK_KEY + key;
         // 7. 如果获取锁失败, 说明已经有线程在更新缓存, 这里直接返回旧数据即可
         if (!tryLock(lockKey)) {
             return result;
