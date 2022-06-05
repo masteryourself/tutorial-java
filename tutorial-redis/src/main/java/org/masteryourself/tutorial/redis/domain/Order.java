@@ -12,32 +12,34 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 /**
- * <p>description : User
+ * <p>description : VoucherOrder
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2022/5/20 11:06 AM
+ * @date : 2022/6/5 12:44 AM
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * 用户名称
+     * 用户 id
      */
-    private String name;
+    @Column(name = "user_id")
+    private Long userId;
 
     /**
-     * 手机号
+     * 优惠券 id
      */
-    private String phone;
+    @Column(name = "goods_id")
+    private Long goodsId;
 
     @Column(name = "ctime", updatable = false, insertable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

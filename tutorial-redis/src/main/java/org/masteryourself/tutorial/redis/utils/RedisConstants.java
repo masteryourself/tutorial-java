@@ -14,13 +14,13 @@ public class RedisConstants {
     /**
      * 用户验证码
      */
-    public static final String USER_CODE_KEY = "user:code";
+    public static final String USER_CODE_KEY = "user:code:";
     public static final Long USER_CODE_TTL = 5L;
 
     /**
      * 用户 token
      */
-    public static final String USER_TOKEN_KEY = "user:token";
+    public static final String USER_TOKEN_KEY = "user:token:";
     public static final Long USER_TOKEN_TTL = 30L;
 
     /**

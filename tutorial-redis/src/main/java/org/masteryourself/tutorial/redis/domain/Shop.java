@@ -9,7 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * <p>description : Shop
@@ -29,16 +29,22 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 商家名称
+     */
     private String name;
 
+    /**
+     * 描述信息
+     */
     private String desc;
 
+    @Column(name = "ctime", updatable = false, insertable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @Column(name = "mtime", updatable = false, insertable = false)
-    private Date ctime;
+    private LocalDateTime ctime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Column(name = "mtime", updatable = false, insertable = false)
-    private Date mtime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime mtime;
 
 }
