@@ -36,7 +36,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateById(Goods goods) {
-        return voucherMapper.updateByPrimaryKey(goods);
+    public int updateStock(Goods goods) {
+        return voucherMapper.updateStock(goods);
     }
 }

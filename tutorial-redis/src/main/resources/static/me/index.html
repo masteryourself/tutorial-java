@@ -19,7 +19,7 @@
         $.ajax({
             type: 'POST',
             url: '/user/me',
-            headers: {'authorization': user},
+            headers: {'Authorization': user},
             success: function (data) {
                 $("#meInfo").text(JSON.stringify(data.data))
             },

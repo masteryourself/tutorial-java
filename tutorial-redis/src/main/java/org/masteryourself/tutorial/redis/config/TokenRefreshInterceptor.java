@@ -33,7 +33,7 @@ public class TokenRefreshInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 1. 从 header 头中获取 authorization
-        String authorizationToken = request.getHeader("authorization");
+        String authorizationToken = request.getHeader("Authorization");
         if (StrUtil.isBlank(authorizationToken)) {
             // 这里需要放行, 因为部分页面不需要登录
             return true;

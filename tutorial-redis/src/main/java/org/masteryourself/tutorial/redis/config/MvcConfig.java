@@ -31,16 +31,18 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .order(0);
         // 2. 登录拦截器(部分资源需要排除)
-//        registry.addInterceptor(loginInterceptor)
-//                .addPathPatterns("/**")
-//                .excludePathPatterns(
-//                        "/**/*.html",
-//                        "/webjars/**",
-//                        "/static/**",
-//                        "/user/sendCode",
-//                        "/user/login"
-//                )
-//                .order(1);
+        registry.addInterceptor(loginInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns(
+                        "/swagger*/**",
+                        "/v2/**",
+                        "/**/*.html",
+                        "/webjars/**",
+                        "/static/**",
+                        "/user/sendCode",
+                        "/user/login"
+                )
+                .order(1);
     }
 }
 

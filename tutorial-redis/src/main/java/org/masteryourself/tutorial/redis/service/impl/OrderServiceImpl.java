@@ -55,12 +55,11 @@ public class OrderServiceImpl implements OrderService {
             return Result.fail("商品库存不足");
         }
         // 3. 扣减库存
-        goods.setStock(goods.getStock() - 1);
-        int stockOpRes = goodsService.updateById(goods);
+        int stockOpRes = goodsService.updateStock(goods);
         if (stockOpRes <= 0) {
             return Result.fail("扣减库存失败");
         }
-        // 4. 保存订单
+        // 4. 生成订单
         Order order = new Order();
         order.setId(redisIdGenerate.nextId("order"));
         Long userId = UserHolder.getUser().getId();
