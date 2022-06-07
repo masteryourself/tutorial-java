@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.redis.domain.User;
 import org.masteryourself.tutorial.redis.dto.Result;
@@ -17,6 +18,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -81,11 +83,17 @@ public class UserServiceImpl implements UserService {
         // 需要全部转成 string
         stringRedisTemplate.opsForHash().putAll(tokenKey,
                 BeanUtil.beanToMap(user, new HashMap<>(), CopyOptions.create()
-                        .setIgnoreNullValue(true)
+                        .setIgnoreProperties("ctime", "mtime")
                         .setFieldValueEditor((fieldName, fieldValue) -> fieldValue.toString())));
         stringRedisTemplate.expire(tokenKey, 30, TimeUnit.MINUTES);
         // 6. 返回 token
         return Result.ok(token);
+    }
+
+    @Override
+    public List<User> findByIds(List<Long> userIds) {
+        String userIdStr = StrUtil.join(",", userIds);
+        return userMapper.findByIds(userIdStr);
     }
 
     private User create(String phone) {

@@ -5,8 +5,10 @@ import lombok.Data;
 /**
  * <p>description : TopicOrderData
  *
- * @author : 其琛
- * @version : 1.1.1
+ * <p>blog : https://www.yuque.com/ruanrenzhao/
+ *
+ * @author : masteryourself
+ * @version : 1.0.0
  * @date : 2022/6/7 5:55 PM
  */
 @Data
