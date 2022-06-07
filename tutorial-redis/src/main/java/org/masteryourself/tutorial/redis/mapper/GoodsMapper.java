@@ -6,7 +6,7 @@ import org.masteryourself.tutorial.redis.domain.Goods;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
- * <p>description : VoucherMapper
+ * <p>description : GoodsMapper
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -14,7 +14,7 @@ import tk.mybatis.mapper.common.Mapper;
  * @version : 1.0.0
  * @date : 2022/6/5 12:58 AM
  */
-public interface VoucherMapper extends Mapper<Goods> {
+public interface GoodsMapper extends Mapper<Goods> {
 
     /**
      * 优化 1: 基于库存的乐观锁改良, 即把 stock 字段当成 version 作为版本控制

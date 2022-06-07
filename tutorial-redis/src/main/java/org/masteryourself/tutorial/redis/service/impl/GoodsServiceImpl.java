@@ -2,7 +2,7 @@ package org.masteryourself.tutorial.redis.service.impl;
 
 import org.masteryourself.tutorial.redis.domain.Goods;
 import org.masteryourself.tutorial.redis.dto.Result;
-import org.masteryourself.tutorial.redis.mapper.VoucherMapper;
+import org.masteryourself.tutorial.redis.mapper.GoodsMapper;
 import org.masteryourself.tutorial.redis.service.GoodsService;
 import org.masteryourself.tutorial.redis.utils.RedisConstants;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 public class GoodsServiceImpl implements GoodsService {
 
     @Resource
-    private VoucherMapper voucherMapper;
+    private GoodsMapper goodsMapper;
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
@@ -32,7 +32,7 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result create(Goods goods) {
-        int res = voucherMapper.insertSelective(goods);
+        int res = goodsMapper.insertSelective(goods);
         if (res <= 0) {
             return Result.fail("保存商品失败");
         }
@@ -45,18 +45,18 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public Goods getById(Long voucherId) {
-        return voucherMapper.selectByPrimaryKey(voucherId);
+        return goodsMapper.selectByPrimaryKey(voucherId);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateStock(Long goodsId, int stock) {
-        return voucherMapper.updateStock(goodsId, stock);
+        return goodsMapper.updateStock(goodsId, stock);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateStockGt0(Long goodsId) {
-        return voucherMapper.updateStockGt0(goodsId);
+        return goodsMapper.updateStockGt0(goodsId);
     }
 }
