@@ -4,6 +4,8 @@ import org.masteryourself.tutorial.redis.domain.Goods;
 import org.masteryourself.tutorial.redis.dto.Result;
 import org.masteryourself.tutorial.redis.mapper.VoucherMapper;
 import org.masteryourself.tutorial.redis.service.GoodsService;
+import org.masteryourself.tutorial.redis.utils.RedisConstants;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,9 +26,21 @@ public class GoodsServiceImpl implements GoodsService {
     @Resource
     private VoucherMapper voucherMapper;
 
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result create(Goods goods) {
-        return Result.ok(voucherMapper.insertSelective(goods));
+        int res = voucherMapper.insertSelective(goods);
+        if (res <= 0) {
+            return Result.fail("保存商品失败");
+        }
+        // 把商品库存保存到 redis 中
+        stringRedisTemplate.opsForValue().set(
+                RedisConstants.SEC_KILL_STOCK_KEY + goods.getId(),
+                String.valueOf(goods.getStock()));
+        return Result.ok(res);
     }
 
     @Override
@@ -36,7 +50,13 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateStock(Goods goods) {
-        return voucherMapper.updateStock(goods);
+    public int updateStock(Long goodsId, int stock) {
+        return voucherMapper.updateStock(goodsId, stock);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int updateStockGt0(Long goodsId) {
+        return voucherMapper.updateStockGt0(goodsId);
     }
 }

@@ -2,6 +2,7 @@ package org.masteryourself.tutorial.redis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
@@ -15,6 +16,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication
 @MapperScan("org.masteryourself.tutorial.redis.mapper")
+@EnableAspectJAutoProxy(exposeProxy = true)
 public class RedisApplication {
 
     public static void main(String[] args) {

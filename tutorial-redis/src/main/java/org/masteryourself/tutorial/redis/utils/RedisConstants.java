@@ -44,4 +44,9 @@ public class RedisConstants {
      */
     public static final String ID_GEN_KEY = "idgen:";
 
+    /**
+     * 秒杀商品库存
+     */
+    public static final String SEC_KILL_STOCK_KEY = "seckill:stock:";
+
 }

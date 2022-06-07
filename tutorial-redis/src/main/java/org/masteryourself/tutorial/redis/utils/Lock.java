@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.redis.service;
+package org.masteryourself.tutorial.redis.utils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit;
  */
 public interface Lock {
 
-    boolean tryLock(String name, long time, TimeUnit unit);
+    boolean tryLock(long time, TimeUnit unit);
 
-    void unlock(String name);
+    void unlock();
 
 }

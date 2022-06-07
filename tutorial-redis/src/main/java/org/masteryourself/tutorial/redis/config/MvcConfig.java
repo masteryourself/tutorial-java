@@ -40,7 +40,8 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/webjars/**",
                         "/static/**",
                         "/user/sendCode",
-                        "/user/login"
+                        "/user/login",
+                        "/goods/**"
                 )
                 .order(1);
     }

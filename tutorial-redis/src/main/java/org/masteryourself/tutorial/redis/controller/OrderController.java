@@ -24,11 +24,19 @@ import javax.annotation.Resource;
 public class OrderController {
 
     @Resource
-    private OrderService orderService;
+    private OrderService orderServiceImpl;
+
+    @Resource
+    private OrderService orderAsyncServiceImpl;
 
     @PostMapping("create")
     public Result create(Long goodsId) {
-        return orderService.create(goodsId);
+        return orderServiceImpl.create(goodsId);
+    }
+
+    @PostMapping("create_async")
+    public Result createAsync(Long goodsId) {
+        return orderAsyncServiceImpl.create(goodsId);
     }
 
 }

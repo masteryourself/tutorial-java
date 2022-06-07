@@ -18,5 +18,7 @@ public interface GoodsService {
 
     Goods getById(Long voucherId);
 
-    int updateStock(Goods goods);
+    int updateStock(Long goodsId, int stock);
+
+    int updateStockGt0(Long goodsId);
 }
