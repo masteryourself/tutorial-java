@@ -21,4 +21,9 @@ public interface UserService {
     Result login(String phone, String code);
 
     List<User> findByIds(List<Long> userIds);
+
+    Result sign();
+
+    Result signCount();
+
 }

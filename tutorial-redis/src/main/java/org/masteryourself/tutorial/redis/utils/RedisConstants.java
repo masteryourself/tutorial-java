@@ -24,6 +24,11 @@ public class RedisConstants {
     public static final Long USER_TOKEN_TTL = 30L;
 
     /**
+     * 用户签到
+     */
+    public static final String USER_SIGN_KEY = "user:sign:";
+
+    /**
      * 缓存穿透空值
      */
     public static final String CACHE_PASS_THROUGH_INVALID_FLAG = "empty";

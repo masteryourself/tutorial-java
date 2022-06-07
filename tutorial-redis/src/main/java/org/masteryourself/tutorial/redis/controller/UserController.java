@@ -4,10 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.redis.dto.Result;
 import org.masteryourself.tutorial.redis.service.UserService;
 import org.masteryourself.tutorial.redis.utils.UserHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -41,6 +38,16 @@ public class UserController {
     @PostMapping("/me")
     public Result me() {
         return Result.ok(UserHolder.getUser());
+    }
+
+    @GetMapping("/sign")
+    public Result sign() {
+        return userService.sign();
+    }
+
+    @GetMapping("/signCount")
+    public Result signCount() {
+        return userService.signCount();
     }
 
 }
