@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.js"></script>
+</head>
+<body>
+<form>
+    <button type="button" onclick="me()">查看个人信息</button>
+    <br/>
+    <h5 id="meInfo"></h5>
+    <button type="button" onclick="sign()">签到</button>
+    <br/>
+    <button type="button" onclick="signCount()">查看当月连续签到天数</button>
+    <h5 id="signInfo"></h5>
+</form>
+</body>
+
+<script type="text/javascript">
+    function me() {
+        // 从 localStorage 中获取 token, 然后携带到 header 中
+        let user = localStorage.getItem("user")
+        $.ajax({
+            type: 'POST',
+            url: '/user/me',
+            headers: {'Authorization': user},
+            success: function (data) {
+                $("#meInfo").text(JSON.stringify(data.data))
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    function sign() {
+        // 从 localStorage 中获取 token, 然后携带到 header 中
+        let user = localStorage.getItem("user")
+        $.ajax({
+            type: 'GET',
+            url: '/user/sign',
+            headers: {'Authorization': user},
+            success: function (data) {
+                alert(data.data)
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    function signCount() {
+        // 从 localStorage 中获取 token, 然后携带到 header 中
+        let user = localStorage.getItem("user")
+        $.ajax({
+            type: 'GET',
+            url: '/user/signCount',
+            headers: {'Authorization': user},
+            success: function (data) {
+                $("#signInfo").text("当前连续签到 [" + data.data + "] 天")
+            },
+            error: function () {
+
+            }
+        });
+    }
+</script>
+
+</html>
