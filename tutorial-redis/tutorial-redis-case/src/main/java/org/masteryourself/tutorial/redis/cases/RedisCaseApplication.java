@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.redis;
+package org.masteryourself.tutorial.redis.cases;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
- * <p>description : RedisApplication
+ * <p>description : RedisCaseApplication
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -17,10 +17,10 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @MapperScan("org.masteryourself.tutorial.redis.cases.mapper")
 @EnableAspectJAutoProxy(exposeProxy = true)
-public class RedisApplication {
+public class RedisCaseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RedisApplication.class, args);
+        SpringApplication.run(RedisCaseApplication.class, args);
     }
 
 }

@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.redis.cases.config;
+package org.masteryourself.tutorial.redis.sentinel.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ public class SwaggerConfig {
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.masteryourself.tutorial.redis.cases.controller"))
+                .apis(RequestHandlerSelectors.basePackage("org.masteryourself.tutorial.redis.sentinel.controller"))
                 .build();
     }
 
