@@ -11,18 +11,12 @@ package org.masteryourself.tutorial.sync;
  */
 public class SyncBytecode {
 
-    static final Object obj = new Object();
+    static final Object lock = new Object();
+    static int counter = 0;
 
-    public static void method1() {
-        synchronized( obj ) {
-            // 同步块 A
-            method2();
-        }
-    }
-
-    public static void method2() {
-        synchronized( obj ) {
-            // 同步块 B
+    public static void main(String[] args) {
+        synchronized (lock) {
+            counter++;
         }
     }
 
