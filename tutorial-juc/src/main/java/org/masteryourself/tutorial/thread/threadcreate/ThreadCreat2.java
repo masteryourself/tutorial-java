@@ -15,13 +15,17 @@ import lombok.extern.slf4j.Slf4j;
 public class ThreadCreat2 {
 
     public static void main(String[] args) {
+        // 要执行的任务
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 log.info("t2 run");
             }
         };
-        new Thread(runnable, "t2").start();
+        // 创建线程
+        Thread t2 = new Thread(runnable, "t2");
+        // 启动线程
+        t2.start();
     }
 
 }

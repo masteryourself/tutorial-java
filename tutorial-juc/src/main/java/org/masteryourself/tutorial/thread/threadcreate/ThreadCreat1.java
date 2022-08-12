@@ -15,12 +15,16 @@ import lombok.extern.slf4j.Slf4j;
 public class ThreadCreat1 {
 
     public static void main(String[] args) {
-        new Thread("t1") {
+        // 创建线程对象
+        Thread t1 = new Thread("t1") {
             @Override
             public void run() {
+                // 要执行的任务
                 log.info("t1 run");
             }
-        }.start();
+        };
+        // 启动线程
+        t1.start();
     }
 
 }
