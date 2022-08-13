@@ -20,19 +20,17 @@ public class SyncBiased3 {
         Dog d = new Dog();
         ClassLayout classLayout = ClassLayout.parseInstance(d);
 
-        new Thread(() -> {
-            log.info("synchronized 前");
-            // 0x0000000000000001 (non-biasable; age: 0) => 01=0000 0001(正常状态)
+        log.info("synchronized 前");
+        // 0x0000000000000001 (non-biasable; age: 0) => 01=0000 0001(正常状态)
+        System.out.println(classLayout.toPrintable());
+        synchronized (d) {
+            log.info("synchronized 中");
+            // 0x000000030eb749e0 (thin lock: 0x000000030eb749e0) => 轻量级锁记录
             System.out.println(classLayout.toPrintable());
-            synchronized (d) {
-                log.info("synchronized 中");
-                // 0x000000030eb749e0 (thin lock: 0x000000030eb749e0) => 轻量级锁记录
-                System.out.println(classLayout.toPrintable());
-            }
-            log.info("synchronized 后");
-            //  0x0000000000000001 (non-biasable; age: 0) => 01=0000 0001(正常状态)
-            System.out.println(classLayout.toPrintable());
-        }, "t3").start();
+        }
+        log.info("synchronized 后");
+        //  0x0000000000000001 (non-biasable; age: 0) => 01=0000 0001(正常状态)
+        System.out.println(classLayout.toPrintable());
     }
 
     static class Dog {

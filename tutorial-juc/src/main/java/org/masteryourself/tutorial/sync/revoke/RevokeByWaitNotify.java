@@ -18,6 +18,7 @@ public class RevokeByWaitNotify {
     // 需要添加 VM 参数禁用延迟 -XX:BiasedLockingStartupDelay=0
     public static void main(String[] args) throws Exception {
         Dog d = new Dog();
+
         Thread t1 = new Thread(() -> {
             // 0x0000000000000005 (biasable; age: 0) => 偏向锁
             log.info(ClassLayout.parseInstance(d).toPrintable());
@@ -34,6 +35,7 @@ public class RevokeByWaitNotify {
             }
         }, "t1");
         t1.start();
+
         new Thread(() -> {
             try {
                 Thread.sleep(6000);
