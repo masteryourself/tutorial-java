@@ -21,16 +21,18 @@ public class InterruptSleep {
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
+                // 打断状态是 false
+                // 此 API 会清除打断标记
+                log.info("打断状态是 {}", Thread.currentThread().isInterrupted());
                 log.error(e.getMessage(), e);
             }
         }, "t1");
         t1.start();
-        TimeUnit.MILLISECONDS.sleep(100);
-        // t1 interrupt 状态是 false
-        log.info("t1 interrupt 状态是 {}", t1.isInterrupted());
+        // 确保线程处于 sleep 状态
+        TimeUnit.MILLISECONDS.sleep(500);
         t1.interrupt();
-        // t1 interrupt 状态是 true
-        log.info("t1 interrupt 状态是 {}", t1.isInterrupted());
+        // t1 打断状态是 false
+        log.info("t1 打断状态是 {}", t1.isInterrupted());
     }
 
 }

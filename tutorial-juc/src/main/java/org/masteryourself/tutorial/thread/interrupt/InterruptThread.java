@@ -22,15 +22,17 @@ public class InterruptThread {
                 Thread current = Thread.currentThread();
                 boolean interrupted = current.isInterrupted();
                 if (interrupted) {
-                    // 打断状态: true
-                    log.info(" 打断状态: {}", interrupted);
+                    // 打断状态是: true
+                    log.info("打断状态是: {}", interrupted);
                     break;
                 }
             }
         }, "t2");
         t2.start();
-        TimeUnit.MILLISECONDS.sleep(100);
+        TimeUnit.MILLISECONDS.sleep(500);
         t2.interrupt();
+        // t2 打断状态是 true
+        log.info("t2 打断状态是 {}", t2.isInterrupted());
     }
 
 }

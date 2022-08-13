@@ -18,14 +18,17 @@ import java.util.concurrent.locks.LockSupport;
 public class InterruptPark {
 
     public static void main(String[] args) throws Exception {
-        Thread t3 = new Thread(() -> {
+        Thread t4 = new Thread(() -> {
             LockSupport.park();
             // 打断状态 true
             log.info("打断状态 {}", Thread.currentThread().isInterrupted());
-        }, "t1");
-        t3.start();
+            // 此时再想使用 park() 方法会失效, 除非将打断标记重置
+            LockSupport.park();
+            log.info("程序继续运行");
+        }, "t4");
+        t4.start();
         TimeUnit.MILLISECONDS.sleep(100);
-        t3.interrupt();
+        t4.interrupt();
     }
 
 }
