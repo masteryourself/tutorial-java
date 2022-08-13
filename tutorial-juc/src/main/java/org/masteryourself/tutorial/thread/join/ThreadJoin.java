@@ -17,10 +17,10 @@ public class ThreadJoin {
     static int result = 1;
 
     public static void main(String[] args) throws Exception {
-        Thread thread = new Thread(() -> result = 10, "t1");
-        thread.start();
+        Thread t1 = new Thread(() -> result = 10, "t1");
+        t1.start();
         // 确保线程运行结束, 将结果改成 10
-        thread.join();
+        t1.join();
         log.info("result {}", result);
     }
 
