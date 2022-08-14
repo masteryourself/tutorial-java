@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.waitnotify;
+package org.masteryourself.tutorial.sync.waitnotify;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
