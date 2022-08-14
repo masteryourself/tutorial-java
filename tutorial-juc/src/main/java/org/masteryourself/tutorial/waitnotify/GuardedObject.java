@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.sync;
+package org.masteryourself.tutorial.waitnotify;
 
 import lombok.extern.slf4j.Slf4j;
 
