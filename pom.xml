@@ -12,11 +12,8 @@
     <modules>
         <module>tutorial-design-pattern</module>
         <module>tutorial-algorithm</module>
-        <module>tutorial-kafka</module>
-        <module>tutorial-dubbo</module>
         <module>tutorial-sharding</module>
-        <module>tutorial-mybatis</module>
-        <module>tutorial-juc</module>
+        <module>tutorial-concurrent</module>
         <module>tutorial-nio</module>
         <module>tutorial-netty</module>
         <module>tutorial-jvm</module>
