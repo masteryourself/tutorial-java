@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>description : TestMyThreadPool
+ * <p>description : MyThreadPoolTest
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @date : 2022/10/15 14:41
  */
 @Slf4j
-public class TestMyThreadPool {
+public class MyThreadPoolTest {
 
     public static void main(String[] args) {
         RejectPolicy<Runnable> policy = (queue, task) -> {
