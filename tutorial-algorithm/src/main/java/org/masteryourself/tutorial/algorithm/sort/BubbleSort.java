@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.algorithm;
+package org.masteryourself.tutorial.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,12 +15,13 @@ import lombok.extern.slf4j.Slf4j;
 public class BubbleSort {
 
     public static void bubble(int[] array) {
-        // 一共需要交换 array.length - 1 轮
+        // 3. 一共需要交换 array.length - 1 轮
         for (int j = 0; j < array.length - 1; j++) {
             boolean swap = false;
-            // 每一轮冒泡是为了找出最大值, 放到最右边
+            // 1. 每一轮冒泡是为了找出最大值, 放到最右边
             for (int i = 0; i < array.length - 1 - j; i++) {
                 if (array[i] > array[i + 1]) {
+                    // 2. 将最大值放到最右边, 标记发生了排序交换
                     swap(array, i, i + 1);
                     swap = true;
                 }
@@ -41,8 +42,8 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        int[] array1 = {5, 2, 7, 4, 1, 3, 8, 9};
-        bubble(array1);
+        int[] array = {5, 2, 7, 4, 1, 3, 8, 9};
+        bubble(array);
     }
 
 }

@@ -1,11 +1,11 @@
-package org.masteryourself.tutorial.algorithm;
+package org.masteryourself.tutorial.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * <p>description : BubbleEnhanceSort
+ * <p>description : BubbleEnhanceSort, 冒泡排序增强
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -47,8 +47,8 @@ public class BubbleEnhanceSort {
     }
 
     public static void main(String[] args) {
-        int[] array2 = {5, 2, 7, 4, 1, 3, 8, 9};
-        bubbleEnhance(array2);
+        int[] array = {5, 2, 7, 4, 1, 3, 8, 9};
+        bubbleEnhance(array);
     }
 
 }
