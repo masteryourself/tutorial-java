@@ -31,7 +31,7 @@ public class BubbleEnhanceSort {
                 }
             }
             nextCycleCount = n;
-            log.info("第 {} 轮冒泡, 循环次数是 {}, 冒泡结果是 {}", cycleCount.incrementAndGet(), nextCycleCount, array);
+            log.info("第 {} 轮冒泡排序, 循环次数是 {}, 排序结果是 {}", cycleCount.incrementAndGet(), nextCycleCount, array);
             // n=0 表示上轮排序已经没有发生交换, 不再需要冒泡了
             if (n == 0) {
                 log.info("数组已经有序了, 不需要再冒泡了");

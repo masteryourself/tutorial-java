@@ -26,7 +26,7 @@ public class BubbleSort {
                     swap = true;
                 }
             }
-            log.info("第 {} 轮冒泡, 循环次数是 {}, 冒泡结果是 {}", j + 1, array.length - 1 - j, array);
+            log.info("第 {} 轮冒泡排序, 循环次数是 {}, 排序结果是 {}", j + 1, array.length - 1 - j, array);
             // 如果一次交换都没有发生, 表示数组已经有序了, 不需要再排序了
             if (!swap) {
                 log.info("数组已经有序了, 不需要再冒泡了");
