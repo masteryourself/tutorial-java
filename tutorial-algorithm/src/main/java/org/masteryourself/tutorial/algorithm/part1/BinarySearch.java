@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.algorithm.search;
+package org.masteryourself.tutorial.algorithm.part1;
 
 import lombok.extern.slf4j.Slf4j;
 
