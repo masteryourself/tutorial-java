@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.algorithm.leetcode.binarysearch;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>description : Exercise35
+ * <p>description : LeetCode35
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date : 2023/5/9 19:16
  */
 @Slf4j
-public class Exercise35 {
+public class LeetCode35 {
 
     public int searchInsert(int[] nums, int target) {
         int i = 0, j = nums.length - 1;
@@ -30,7 +30,7 @@ public class Exercise35 {
     }
 
     public static void main(String[] args) {
-        log.info("{}", new Exercise35().searchInsert(new int[]{1, 3, 5, 6}, 5));
+        log.info("{}", new LeetCode35().searchInsert(new int[]{1, 3, 5, 6}, 5));
     }
 
 }

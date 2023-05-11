@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.algorithm.leetcode.binarysearch;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>description : Exercise34
+ * <p>description : LeetCode34
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date : 2023/5/10 19:14
  */
 @Slf4j
-public class Exercise34 {
+public class LeetCode34 {
 
     public int[] searchRange(int[] nums, int target) {
         // 查找最左元素
@@ -57,7 +57,7 @@ public class Exercise34 {
     }
 
     public static void main(String[] args) {
-        log.info("{}", new Exercise34().searchRange(new int[]{5, 7, 7, 8, 8, 10}, 8));
+        log.info("{}", new LeetCode34().searchRange(new int[]{5, 7, 7, 8, 8, 10}, 8));
     }
 
 }

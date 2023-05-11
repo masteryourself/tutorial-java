@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.algorithm.leetcode.binarysearch;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>description : Exercise704
+ * <p>description : LeetCode704
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date : 2023/5/9 19:11
  */
 @Slf4j
-public class Exercise704 {
+public class LeetCode704 {
 
     public int search(int[] nums, int target) {
         int i = 0, j = nums.length - 1;
@@ -30,7 +30,7 @@ public class Exercise704 {
     }
 
     public static void main(String[] args) {
-        log.info("{}", new Exercise704().search(new int[]{-1, 0, 3, 5, 9, 12}, 9));
+        log.info("{}", new LeetCode704().search(new int[]{-1, 0, 3, 5, 9, 12}, 9));
     }
 
 }
