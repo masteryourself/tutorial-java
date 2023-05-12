@@ -168,7 +168,6 @@ public class SinglyLinkedList implements Iterable<Integer> {
         return curr;
     }
 
-
     /**
      * Node 定义为内部类，是为了对外**隐藏**实现细节，没必要让类的使用者关心 Node 结构
      * 定义为 static 内部类，是因为 Node **不需要**与 SinglyLinkedList 实例相关，多个 SinglyLinkedList实例能共用 Node 类定义
