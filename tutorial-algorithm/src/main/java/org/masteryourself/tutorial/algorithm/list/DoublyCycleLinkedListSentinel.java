@@ -3,57 +3,59 @@ package org.masteryourself.tutorial.algorithm.list;
 import java.util.Iterator;
 
 /**
- * <p>description : DoublyLinkedListSentinel
+ * <p>description : DoublyCycleLinkedListSentinel
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2023/5/11 21:18
+ * @date : 2023/5/12 14:11
  */
-public class DoublyLinkedListSentinel implements Iterable<Integer> {
+public class DoublyCycleLinkedListSentinel implements Iterable<Integer> {
 
-    private Node head;
-    private Node tail;
+    private final Node sentinel = new Node(null, -1, null);
 
-    public DoublyLinkedListSentinel() {
-        head = new Node(null, -1, null);
-        tail = new Node(null, -1, null);
-        head.next = tail;
-        tail.prev = head;
+    public DoublyCycleLinkedListSentinel() {
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
     }
 
     public void addFirst(int value) {
-        insert(0, value);
+        Node next = sentinel.next;
+        Node added = new Node(null, value, null);
+        sentinel.next = added;
+        added.prev = sentinel;
+        next.prev = added;
+        added.next = next;
     }
 
     public void removeFirst() {
-        Node removed = head.next;
-        if (removed == tail) {
+        Node removed = sentinel.next;
+        if (removed == sentinel) {
             throw new IllegalArgumentException("非法操作");
         }
         Node next = removed.next;
-        head.next = next;
-        next.prev = head;
+        sentinel.next = next;
+        next.prev = sentinel;
     }
 
     public void addLast(int value) {
-        Node last = tail.prev;
+        Node prev = sentinel.prev;
         Node added = new Node(null, value, null);
-        last.next = added;
-        added.prev = last;
-        added.next = tail;
-        tail.prev = added;
+        prev.next = added;
+        added.prev = prev;
+        added.next = sentinel;
+        sentinel.prev = added;
     }
 
     public void removeLast() {
-        Node removed = tail.prev;
-        if (removed == head) {
+        Node removed = sentinel.prev;
+        if(removed == sentinel){
             throw new IllegalArgumentException("非法操作");
         }
         Node prev = removed.prev;
-        prev.next = tail;
-        tail.prev = prev;
+        prev.next = sentinel;
+        sentinel.prev = prev;
     }
 
     public void insert(int index, int value) {
@@ -71,22 +73,19 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
     }
 
     public void remove(int index) {
-        Node prev = findNode(index - 1);
-        if (prev == null) {
+        Node removed = findNode(index);
+        if (removed == null) {
             throw new IllegalArgumentException("非法操作");
         }
-        Node removed = prev.next;
-        if (removed == tail) {
-            throw new IllegalArgumentException("非法操作");
-        }
+        Node prev = removed.prev;
         Node next = removed.next;
         prev.next = next;
-        next.prev = prev;
+        next.prev = next;
     }
 
     private Node findNode(int index) {
-        int i = -1;
-        for (Node p = head; p != tail; p = p.next) {
+        int i = 0;
+        for (Node p = sentinel.next; p != sentinel; p = p.next) {
             if (i == index) {
                 return p;
             }
@@ -118,12 +117,12 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
 
     private class NodeIterator implements Iterator<Integer> {
         // head 节点不参与遍历
-        Node temp = head.next;
+        Node temp = sentinel.next;
 
         @Override
         public boolean hasNext() {
             // tail 节点不参与遍历
-            return temp != tail;
+            return temp != sentinel;
         }
 
         @Override
