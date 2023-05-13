@@ -42,4 +42,24 @@ public class ListNode {
         return sb.toString();
     }
 
+    public static ListNode of(int... elements) {
+        if (elements.length == 0) {
+            return null;
+        }
+        ListNode p = null;
+        for (int i = elements.length - 1; i >= 0; i--) {
+            p = new ListNode(elements[i], p);
+        }
+        return p;
+    }
+
+    public ListNode append(ListNode last) {
+        ListNode p = this;
+        while (p.next != null) {
+            p = p.next;
+        }
+        p.next = last;
+        return this;
+    }
+
 }

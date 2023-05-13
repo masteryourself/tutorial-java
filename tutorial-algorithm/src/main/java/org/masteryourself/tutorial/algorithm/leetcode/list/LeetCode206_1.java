@@ -1,7 +1,7 @@
 package org.masteryourself.tutorial.algorithm.leetcode.list;
 
 /**
- * <p>description : LeetCode206
+ * <p>description : LeetCode206_1
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
