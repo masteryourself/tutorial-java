@@ -1,7 +1,7 @@
 package org.masteryourself.tutorial.algorithm.recursion;
 
 /**
- * <p>description : E01Fibonacci
+ * <p>description : E02Fibonacci
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -9,7 +9,7 @@ package org.masteryourself.tutorial.algorithm.recursion;
  * @version : 1.0.0
  * @date : 2023/5/13 13:33
  */
-public class E01Fibonacci {
+public class E03Fibonacci {
 
     public static void main(String[] args) {
         System.out.println(fibonacci(10));
