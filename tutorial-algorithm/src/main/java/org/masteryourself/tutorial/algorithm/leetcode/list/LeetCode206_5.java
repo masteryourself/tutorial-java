@@ -20,9 +20,11 @@ public class LeetCode206_5 {
         while (o1 != null) {
             // 先把 o2 节点取出, 方便最后赋值给 o1
             ListNode o2 = o1.next;
-            // 1 -> n1
+            // 将移动下来的节点的 next 指向 n1
             o1.next = n1;
+            // 让 n1 一直保持头节点
             n1 = o1;
+            // 让 o1 继续循环
             o1 = o2;
         }
         return n1;
