@@ -17,10 +17,8 @@ public class ArrayQueue<E> implements Queue<E>, Iterable<E> {
     private int head = 0;
     private int tail = 0;
     private E[] array = null;
-    private int capacity;
 
     public ArrayQueue(int capacity) {
-        this.capacity = capacity;
         array = (E[]) new Object[capacity];
     }
 
