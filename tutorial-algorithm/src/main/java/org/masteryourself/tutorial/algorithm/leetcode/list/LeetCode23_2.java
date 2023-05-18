@@ -15,9 +15,13 @@ import java.util.PriorityQueue;
 public class LeetCode23_2 {
 
     public ListNode mergeKLists(ListNode[] lists) {
-        // 升序使用大顶堆, 降序使用小顶堆
-        // 这里使用小顶堆, 因为要取出最小的元素用来放到新的链表中
-        PriorityQueue<ListNode> heap = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
+        // 这里使用小顶堆(升序), 因为要取出最小的元素用来放到新的链表中
+        PriorityQueue<ListNode> heap = new PriorityQueue<>(new Comparator<ListNode>() {
+            @Override
+            public int compare(ListNode o1, ListNode o2) {
+                return o1.val - o2.val;
+            }
+        });
         for (ListNode list : lists) {
             if (list != null) {
                 heap.offer(list);
