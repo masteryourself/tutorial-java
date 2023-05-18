@@ -1,7 +1,7 @@
 package org.masteryourself.tutorial.algorithm.leetcode.list;
 
 /**
- * <p>description : LeetCode23
+ * <p>description : LeetCode23_1
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -9,7 +9,7 @@ package org.masteryourself.tutorial.algorithm.leetcode.list;
  * @version : 1.0.0
  * @date : 2023/5/15 11:51
  */
-public class LeetCode23 {
+public class LeetCode23_1 {
 
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) {
@@ -59,7 +59,7 @@ public class LeetCode23 {
         System.out.println(list1);
         System.out.println(list2);
         System.out.println(list3);
-        System.out.println(new LeetCode23().mergeKLists(new ListNode[]{list1, list2, list3}));
+        System.out.println(new LeetCode23_1().mergeKLists(new ListNode[]{list1, list2, list3}));
     }
 
 }
