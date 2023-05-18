@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.algorithm.queue.deque;
 import java.util.Iterator;
 
 /**
- * <p>description : LinkedListDeque
+ * <p>description : LinkedDeque
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -11,13 +11,13 @@ import java.util.Iterator;
  * @version : 1.0.0
  * @date : 2023/5/17 15:25
  */
-public class LinkedListDeque<E> implements Deque<E>, Iterable<E> {
+public class LinkedDeque<E> implements Deque<E>, Iterable<E> {
 
     private int size;
     private int capacity;
     private Node<E> sentinel = new Node<>(null, null, null);
 
-    public LinkedListDeque(int capacity) {
+    public LinkedDeque(int capacity) {
         this.capacity = capacity;
         sentinel.prev = sentinel;
         sentinel.next = sentinel;

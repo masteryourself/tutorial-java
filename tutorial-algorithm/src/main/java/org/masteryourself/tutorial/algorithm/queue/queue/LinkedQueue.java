@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.algorithm.queue.queue;
 import java.util.Iterator;
 
 /**
- * <p>description : LinkedListQueue
+ * <p>description : LinkedQueue
  *
  * <p>blog : https://www.yuque.com/ruanrenzhao/
  *
@@ -11,19 +11,19 @@ import java.util.Iterator;
  * @version : 1.0.0
  * @date : 2023/5/16 14:26
  */
-public class LinkedListQueue<E> implements Queue<E>, Iterable<E> {
+public class LinkedQueue<E> implements Queue<E>, Iterable<E> {
 
     private Node<E> head;
     private Node<E> tail;
     private int size;
     private int capacity = Integer.MAX_VALUE;
 
-    public LinkedListQueue(int capacity) {
+    public LinkedQueue(int capacity) {
         this();
         this.capacity = capacity;
     }
 
-    public LinkedListQueue() {
+    public LinkedQueue() {
         Node<E> sentinel = new Node<>(null, null);
         head = sentinel;
         tail = sentinel;

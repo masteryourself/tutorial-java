@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version : 1.0.0
  * @date : 2023/5/16 14:41
  */
-class LinkedListQueueTest {
+class LinkedQueueTest {
 
     @Test
     public void offerLimit() {
-        LinkedListQueue<Integer> queue = new LinkedListQueue<>(3);
+        LinkedQueue<Integer> queue = new LinkedQueue<>(3);
         queue.offer(1);
         queue.offer(2);
         queue.offer(3);
@@ -33,7 +33,7 @@ class LinkedListQueueTest {
     @Test
     @DisplayName("测试删除只剩一个节点时")
     public void poll1() {
-        LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+        LinkedQueue<Integer> queue = new LinkedQueue<>();
         queue.offer(1);
         assertEquals(1, queue.poll());
         assertTrue(queue.isEmpty());
@@ -41,7 +41,7 @@ class LinkedListQueueTest {
 
     @Test
     public void offer() {
-        LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+        LinkedQueue<Integer> queue = new LinkedQueue<>();
         queue.offer(1);
         queue.offer(2);
         queue.offer(3);
@@ -53,7 +53,7 @@ class LinkedListQueueTest {
 
     @Test
     public void peek() {
-        LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+        LinkedQueue<Integer> queue = new LinkedQueue<>();
         assertNull(queue.peek());
         queue.offer(1);
         assertEquals(1, queue.peek());
@@ -63,7 +63,7 @@ class LinkedListQueueTest {
 
     @Test
     public void poll() {
-        LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+        LinkedQueue<Integer> queue = new LinkedQueue<>();
         queue.offer(1);
         queue.offer(2);
         queue.offer(3);

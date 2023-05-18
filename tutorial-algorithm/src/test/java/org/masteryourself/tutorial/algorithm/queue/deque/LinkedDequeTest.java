@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version : 1.0.0
  * @date : 2023/5/17 15:39
  */
-class LinkedListDequeTest {
+class LinkedDequeTest {
 
     // 3 2 1 4 5
     @Test
     public void offer() {
-        LinkedListDeque<Integer> deque = new LinkedListDeque<>(5);
+        LinkedDeque<Integer> deque = new LinkedDeque<>(5);
         deque.offerFirst(1);
         deque.offerFirst(2);
         deque.offerFirst(3);
@@ -32,7 +32,7 @@ class LinkedListDequeTest {
 
     @Test
     public void poll() {
-        LinkedListDeque<Integer> deque = new LinkedListDeque<>(5);
+        LinkedDeque<Integer> deque = new LinkedDeque<>(5);
         deque.offerLast(1);
         deque.offerLast(2);
         deque.offerLast(3);
