@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * <p>description : Message
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

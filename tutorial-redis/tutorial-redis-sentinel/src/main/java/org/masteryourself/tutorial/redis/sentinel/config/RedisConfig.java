@@ -9,7 +9,7 @@ import org.springframework.data.redis.connection.lettuce.LettuceClientConfigurat
 /**
  * <p>description : RedisConfig
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

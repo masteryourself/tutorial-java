@@ -5,7 +5,7 @@ import org.masteryourself.tutorial.algorithm.queue.queue.Queue;
 /**
  * <p>description : PriorityQueue
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

@@ -6,7 +6,7 @@ import jdk.internal.org.objectweb.asm.Opcodes;
 /**
  * <p>description : 元空间内存溢出案例
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

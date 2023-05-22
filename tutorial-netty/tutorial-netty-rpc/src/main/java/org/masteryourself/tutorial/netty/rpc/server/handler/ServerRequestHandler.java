@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 /**
  * <p>description : ServerRequestHandler
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

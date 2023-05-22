@@ -19,7 +19,7 @@ import org.masteryourself.tutorial.netty.rpc.server.handler.ServerRequestHandler
 /**
  * <p>description : RpcServer
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

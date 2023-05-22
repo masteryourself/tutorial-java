@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 /**
  * <p>description : AtomicStampedReferenceDemo
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

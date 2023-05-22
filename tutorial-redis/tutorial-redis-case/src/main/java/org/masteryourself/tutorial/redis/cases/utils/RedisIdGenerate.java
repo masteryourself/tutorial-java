@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * <p>description : RedisIdGenerate
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

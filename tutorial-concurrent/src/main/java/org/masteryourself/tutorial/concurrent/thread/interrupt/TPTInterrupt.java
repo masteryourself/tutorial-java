@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * <p>description : 二阶段终止模式, 使用 interrupt 完成
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

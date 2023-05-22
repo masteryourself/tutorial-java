@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.jvm.jit;
 /**
  * <p>description : 分层编译
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * <p>description : ShortConnectionNettyServer
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

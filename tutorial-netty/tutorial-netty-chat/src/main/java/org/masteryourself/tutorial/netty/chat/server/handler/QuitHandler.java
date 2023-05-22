@@ -9,7 +9,7 @@ import org.masteryourself.tutorial.netty.chat.server.session.SessionFactory;
 /**
  * <p>description : QuitHandler
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

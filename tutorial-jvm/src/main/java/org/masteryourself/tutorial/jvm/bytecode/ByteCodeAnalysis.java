@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.jvm.bytecode;
 /**
  * <p>description : 演示 字节码指令、操作数栈、常量池的关系
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

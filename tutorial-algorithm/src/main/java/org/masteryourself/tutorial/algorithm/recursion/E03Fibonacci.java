@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.algorithm.recursion;
 /**
  * <p>description : E02Fibonacci
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

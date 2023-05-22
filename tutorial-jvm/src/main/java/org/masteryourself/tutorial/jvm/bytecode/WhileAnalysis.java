@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.jvm.bytecode;
 /**
  * <p>description : while 字节码指令分析
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

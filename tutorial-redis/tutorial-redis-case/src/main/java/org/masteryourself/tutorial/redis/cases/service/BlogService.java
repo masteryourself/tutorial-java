@@ -6,7 +6,7 @@ import org.masteryourself.tutorial.redis.cases.dto.Result;
 /**
  * <p>description : BlogService
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.1.1

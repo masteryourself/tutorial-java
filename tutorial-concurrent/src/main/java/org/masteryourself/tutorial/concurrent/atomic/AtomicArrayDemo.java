@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 /**
  * <p>description : AtomicArrayDemo
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

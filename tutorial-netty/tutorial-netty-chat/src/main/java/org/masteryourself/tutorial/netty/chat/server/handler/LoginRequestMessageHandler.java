@@ -10,7 +10,7 @@ import org.masteryourself.tutorial.netty.chat.server.session.SessionFactory;
 /**
  * <p>description : LoginRequestMessageHandler
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

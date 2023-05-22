@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 /**
  * <p>description : CustomClassLoader
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

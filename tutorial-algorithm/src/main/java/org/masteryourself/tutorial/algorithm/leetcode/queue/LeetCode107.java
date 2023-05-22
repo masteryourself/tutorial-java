@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * <p>description : LeetCode107
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

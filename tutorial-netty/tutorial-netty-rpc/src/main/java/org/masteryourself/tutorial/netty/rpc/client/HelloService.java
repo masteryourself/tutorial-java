@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.netty.rpc.client;
 /**
  * <p>description : HelloService
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

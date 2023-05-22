@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <p>description : RedissonConfig
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

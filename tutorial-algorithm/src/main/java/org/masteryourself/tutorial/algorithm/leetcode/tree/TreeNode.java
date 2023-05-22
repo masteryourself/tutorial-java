@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.algorithm.leetcode.tree;
 /**
  * <p>description : TreeNode
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

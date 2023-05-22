@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * <p>description : OrderServiceImpl
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0
@@ -91,6 +91,7 @@ public class OrderServiceImpl implements OrderService {
             // 参数1: 获取锁的等待时间, 不为 -1 则会触发重试机制, 这里最多等待 10s(如果不传则默认值为-1, 不能触发重试机制)
             // 参数2: 默认释放锁的超时时间, 上锁之后 30s 会自动解锁(如果不传则默认值为-1, 会触发看门狗机制)
             // 参数3: 时间单位
+            lock.lock();
             if (!lock.tryLock(10, 30, TimeUnit.SECONDS)) {
                 return Result.fail("活动太火爆, 请稍等");
             }

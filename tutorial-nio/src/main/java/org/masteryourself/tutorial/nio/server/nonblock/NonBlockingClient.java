@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * <p>description : NonBlockingClient
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

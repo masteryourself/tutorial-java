@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * <p>description : SelectorWriteClient
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

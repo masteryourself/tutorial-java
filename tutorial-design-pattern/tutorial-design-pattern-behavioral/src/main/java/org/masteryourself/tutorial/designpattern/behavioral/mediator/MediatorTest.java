@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.designpattern.behavioral.mediator;
 /**
  * <p>description : MediatorTest
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

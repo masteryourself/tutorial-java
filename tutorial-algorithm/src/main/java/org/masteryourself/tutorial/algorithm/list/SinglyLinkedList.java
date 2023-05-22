@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 /**
  * <p>description : SinglyLinkedList
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.netty.chat.message;
 /**
  * <p>description : PingMessage
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

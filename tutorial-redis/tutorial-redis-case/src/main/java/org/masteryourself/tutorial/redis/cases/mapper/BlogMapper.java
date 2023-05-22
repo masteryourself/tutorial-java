@@ -8,7 +8,7 @@ import tk.mybatis.mapper.common.Mapper;
 /**
  * <p>description : BlogMapper
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

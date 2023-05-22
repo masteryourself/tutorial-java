@@ -8,7 +8,7 @@ import java.util.concurrent.locks.LockSupport;
 /**
  * <p>description : InterruptPark
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * <p>description : MyLockTest
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

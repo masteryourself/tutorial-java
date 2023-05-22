@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.jvm.stringtable;
 /**
  * <p>description : 串池面试题1
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * <p>description : 获取泛型信息
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

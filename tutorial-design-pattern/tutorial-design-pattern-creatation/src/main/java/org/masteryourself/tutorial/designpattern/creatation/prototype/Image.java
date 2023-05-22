@@ -8,7 +8,7 @@ import lombok.ToString;
 /**
  * <p>description : Image
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

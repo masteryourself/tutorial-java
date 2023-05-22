@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 /**
  * <p>description : OrderController
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

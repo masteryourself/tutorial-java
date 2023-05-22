@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * <p>description : 登录拦截器
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

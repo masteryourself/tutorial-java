@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.jvm.bytecode;
 /**
  * <p>description : cinit 构造方法字节码分析
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0

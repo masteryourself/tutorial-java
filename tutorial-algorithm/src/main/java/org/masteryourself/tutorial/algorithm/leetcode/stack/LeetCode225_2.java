@@ -6,7 +6,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 /**
  * <p>description : LeetCode225_2
  *
- * <p>blog : https://www.yuque.com/ruanrenzhao/
+ * <p>blog : https://www.yuque.com/masteryoursef
  *
  * @author : masteryourself
  * @version : 1.0.0
