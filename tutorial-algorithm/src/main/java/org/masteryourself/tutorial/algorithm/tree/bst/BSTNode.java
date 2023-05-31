@@ -1,7 +1,5 @@
 package org.masteryourself.tutorial.algorithm.tree.bst;
 
-import java.util.ArrayList;
-
 /**
  * <p>description : BSTNode
  *
