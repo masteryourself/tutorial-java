@@ -1,5 +1,7 @@
 package org.masteryourself.tutorial.algorithm.tree.bst;
 
+import java.util.ArrayList;
+
 /**
  * <p>description : BSTNode
  *
@@ -16,11 +18,6 @@ public class BSTNode {
     Object value;
     BSTNode left;
     BSTNode right;
-
-    public BSTNode(int key) {
-        this.key = key;
-        this.value = key;
-    }
 
     public BSTNode(int key, Object value) {
         this.key = key;
