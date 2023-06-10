@@ -12,8 +12,8 @@ package org.masteryourself.tutorial.designpattern.behavioral.strategy;
 public class StrategyTest {
 
     public static void main(String[] args) {
-        Team team = new Team(new GameStrategy.GrowStrategy());
-        team.game();
+        TravelContext travelContext = new TravelContext(new TravelStrategy.Car());
+        travelContext.selectTravel();
     }
 
 }
