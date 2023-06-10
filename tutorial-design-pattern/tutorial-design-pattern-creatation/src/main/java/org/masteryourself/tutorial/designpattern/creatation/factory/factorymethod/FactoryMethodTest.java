@@ -1,5 +1,6 @@
 package org.masteryourself.tutorial.designpattern.creatation.factory.factorymethod;
 
+
 /**
  * <p>description : FactoryMethodTest
  *
@@ -12,8 +13,8 @@ package org.masteryourself.tutorial.designpattern.creatation.factory.factorymeth
 public class FactoryMethodTest {
 
     public static void main(String[] args) {
-        new CarFactory.AoDiFactory().createCar().run();
-        new CarFactory.JiLiFactory().createCar().run();
+        CoffeeStore coffeeStore = new CoffeeStore(new CoffeeFactory.LatteCoffeeFactory());
+        coffeeStore.orderCoffee();
     }
 
 }

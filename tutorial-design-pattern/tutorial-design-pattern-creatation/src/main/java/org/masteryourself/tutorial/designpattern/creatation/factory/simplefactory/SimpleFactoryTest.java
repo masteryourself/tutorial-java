@@ -3,17 +3,17 @@ package org.masteryourself.tutorial.designpattern.creatation.factory.simplefacto
 /**
  * <p>description : SimpleFactoryTest
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2022/2/26 5:06 PM
+ * @date : 2023/6/10 12:07
  */
 public class SimpleFactoryTest {
 
     public static void main(String[] args) {
-        CarFactory.createCar("奥迪").run();
-        CarFactory.createCar("吉利").run();
+        CoffeeStore coffeeStore = new CoffeeStore();
+        coffeeStore.orderCoffee("americano");
     }
 
 }
