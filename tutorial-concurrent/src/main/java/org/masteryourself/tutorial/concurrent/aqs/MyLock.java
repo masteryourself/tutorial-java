@@ -8,7 +8,7 @@ import java.util.concurrent.locks.Lock;
 /**
  * <p>description : 自定义非公平不可重入锁
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

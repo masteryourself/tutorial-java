@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 /**
  * <p>description : DynamicArray
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

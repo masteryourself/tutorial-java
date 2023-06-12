@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.designpattern.creatation.singleton;
 /**
  * <p>description : 懒汉式 + DCL
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

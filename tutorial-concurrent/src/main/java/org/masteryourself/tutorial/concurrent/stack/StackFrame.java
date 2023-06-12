@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.concurrent.stack;
 /**
  * <p>description : StackFrame
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

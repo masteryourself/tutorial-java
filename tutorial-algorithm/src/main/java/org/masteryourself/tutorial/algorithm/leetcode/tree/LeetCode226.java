@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.algorithm.leetcode.tree;
 /**
  * <p>description : LeetCode226
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

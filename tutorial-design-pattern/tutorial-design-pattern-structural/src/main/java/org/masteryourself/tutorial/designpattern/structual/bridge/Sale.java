@@ -5,7 +5,7 @@ import lombok.ToString;
 /**
  * <p>description : Sale
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

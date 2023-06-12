@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * <p>description : 软引用案例
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

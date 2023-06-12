@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.designpattern.structual.proxy.statics;
 /**
  * <p>description : UserServiceProxy
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

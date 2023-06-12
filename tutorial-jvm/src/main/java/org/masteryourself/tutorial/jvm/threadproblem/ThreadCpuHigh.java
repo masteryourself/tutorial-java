@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.jvm.threadproblem;
 /**
  * <p>description : 某个 CPU 线程占用很高案例
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

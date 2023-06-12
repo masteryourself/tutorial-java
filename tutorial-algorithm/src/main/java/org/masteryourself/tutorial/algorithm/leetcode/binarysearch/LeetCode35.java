@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * <p>description : LeetCode35
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0

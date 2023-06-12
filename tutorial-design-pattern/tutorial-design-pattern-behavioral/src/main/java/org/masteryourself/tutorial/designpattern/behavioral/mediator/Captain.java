@@ -3,7 +3,7 @@ package org.masteryourself.tutorial.designpattern.behavioral.mediator;
 /**
  * <p>description : Captain
  *
- * <p>blog : https://www.yuque.com/masteryoursef
+ * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0
