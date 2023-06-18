@@ -16,9 +16,12 @@ import java.nio.charset.StandardCharsets;
 public class NonBlockingClient {
 
     public static void main(String[] args) throws Exception {
-        SocketChannel sc = SocketChannel.open();
-        sc.connect(new InetSocketAddress(9527));
-        sc.write(StandardCharsets.UTF_8.encode("非阻塞模式"));
+        try (SocketChannel sc = SocketChannel.open();) {
+            sc.connect(new InetSocketAddress(9527));
+            sc.write(StandardCharsets.UTF_8.encode("非阻塞模式"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
