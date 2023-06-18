@@ -61,7 +61,7 @@ public class BossEventLoop implements Runnable {
                     if (selectionKey.isAcceptable()) {
                         SocketChannel socketChannel = ((ServerSocketChannel) selectionKey.channel()).accept();
                         log.info("连接建立事件 {}", socketChannel);
-                        // 轮训交给 work 处理
+                        // 轮询交给 work 处理
                         socketChannel.configureBlocking(false);
                         works[requestIndex.incrementAndGet() % works.length].register(socketChannel);
                     }

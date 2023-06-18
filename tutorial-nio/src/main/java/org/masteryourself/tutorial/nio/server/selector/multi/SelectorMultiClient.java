@@ -1,5 +1,6 @@
 package org.masteryourself.tutorial.nio.server.selector.multi;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
@@ -16,9 +17,12 @@ import java.nio.charset.StandardCharsets;
 public class SelectorMultiClient {
 
     public static void main(String[] args) throws Exception {
-        SocketChannel sc = SocketChannel.open();
-        sc.connect(new InetSocketAddress(9527));
-        sc.write(StandardCharsets.UTF_8.encode("hello"));
+        try (SocketChannel sc = SocketChannel.open();) {
+            sc.connect(new InetSocketAddress(9527));
+            sc.write(StandardCharsets.UTF_8.encode("你好呀"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -23,12 +23,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 @Slf4j
 public class WorkEventLoop implements Runnable {
 
-    private Selector work;
+    private Selector selector;
     private final ConcurrentLinkedQueue<Runnable> tasks = new ConcurrentLinkedQueue<>();
 
     public WorkEventLoop(int index) {
         try {
-            work = Selector.open();
+            selector = Selector.open();
             new Thread(this, "work-" + index).start();
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -38,28 +38,29 @@ public class WorkEventLoop implements Runnable {
     public void register(SocketChannel socketChannel) {
         tasks.add(() -> {
             try {
-                SelectionKey selectionKey = socketChannel.register(work, 0, null);
+                SelectionKey selectionKey = socketChannel.register(selector, 0, null);
                 selectionKey.interestOps(SelectionKey.OP_READ);
-                work.selectNow();
+                selector.selectNow();
             } catch (IOException e) {
                 log.error(e.getMessage(), e);
             }
         });
         // 调用 wakeup() 方法让 select() 不再阻塞，所以代码才能走到 tasks.poll() 否则将会一直阻塞住
-        work.wakeup();
+        selector.wakeup();
     }
 
     @Override
     public void run() {
         while (true) {
             try {
-                // 它会导致阻塞, 无法 channel 无法注册到 Selector 上
-                work.select();
+                // 它会阻塞, 导致 channel 无法注册到 Selector 上, 使用 wakeup 唤醒
+                selector.select();
                 Runnable task = tasks.poll();
                 if (task != null) {
+                    // 这里调用 run() 方法, 将 socketChannel 注册到 selector 上, 同时监听读事件
                     task.run();
                 }
-                Iterator<SelectionKey> iterator = work.selectedKeys().iterator();
+                Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
                 while (iterator.hasNext()) {
                     SelectionKey selectionKey = iterator.next();
                     iterator.remove();
@@ -79,4 +80,5 @@ public class WorkEventLoop implements Runnable {
             }
         }
     }
+
 }

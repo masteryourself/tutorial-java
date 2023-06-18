@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
  * @version : 1.0.0
  * @date : 2022/4/9 4:21 PM
  */
-@Slf4j
 public class SelectorMultiServer {
 
     public static void main(String[] args) throws Exception {

@@ -60,7 +60,7 @@ public class SelectorReadServer {
                             // 把客户端数据读到缓冲区中
                             int read = channel.read(buffer);
                             if (read == -1) {
-                                log.warn("未读取到客户端任何数据, 关闭该连接{}", channel);
+                                log.warn("客户端已经关闭, 关闭该连接{}", channel);
                                 // 客户端正常、异常关闭时都会触发 read 事件，而事件要么处理，要么取消，否则下次该事件仍会触发
                                 selectionKey.cancel();
                                 channel.close();
