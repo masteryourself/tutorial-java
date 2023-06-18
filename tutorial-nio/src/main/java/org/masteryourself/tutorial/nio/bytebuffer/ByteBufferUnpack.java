@@ -35,7 +35,6 @@ public class ByteBufferUnpack {
                 for (int j = 0; j < len; j++) {
                     target.put(source.get());
                 }
-                ByteBufferUtil.debugAll(target);
                 // 切换到读模式
                 target.flip();
                 log.info("拆解出信息 {}", StandardCharsets.UTF_8.decode(target));

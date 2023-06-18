@@ -1,12 +1,12 @@
 package org.masteryourself.tutorial.nio.server.nonblock;
 
 import lombok.extern.slf4j.Slf4j;
-import org.masteryourself.tutorial.nio.bytebuffer.ByteBufferUtil;
 
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class NonBlockingServer {
                 }
                 // 切换到读模式
                 buffer.flip();
-                ByteBufferUtil.debugRead(buffer);
+                log.info("接收到客户端 「{}」 请求, 内容是 「{}」", channel.getRemoteAddress(), StandardCharsets.UTF_8.decode(buffer));
                 // 清除
                 buffer.clear();
             }

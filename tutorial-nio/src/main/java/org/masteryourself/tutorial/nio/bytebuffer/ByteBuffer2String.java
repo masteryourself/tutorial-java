@@ -15,18 +15,15 @@ import java.nio.charset.StandardCharsets;
 public class ByteBuffer2String {
 
     public static void main(String[] args) {
-        // String 转 ByteBuffer 方法一
+        // 方法一: String 转 ByteBuffer
         ByteBuffer buffer1 = ByteBuffer.allocate(16);
         buffer1.put("hello".getBytes());
-        ByteBufferUtil.debugAll(buffer1);
 
-        // String 转 ByteBuffer 方法二, 它会自动切换到读模式
+        // 方法二: String 转 ByteBuffer, 它会自动切换到读模式
         ByteBuffer buffer2 = StandardCharsets.UTF_8.encode("hello");
-        ByteBufferUtil.debugAll(buffer2);
 
-        // String 转 ByteBuffer 方法三, 它会自动切换到读模式
+        // 方法三: String 转 ByteBuffer, 它会自动切换到读模式
         ByteBuffer buffer3 = ByteBuffer.wrap("hello".getBytes());
-        ByteBufferUtil.debugAll(buffer3);
 
         // ByteBuffer 转 String
         buffer1.flip();

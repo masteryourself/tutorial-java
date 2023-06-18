@@ -18,8 +18,7 @@ public class NonBlockingClient {
     public static void main(String[] args) throws Exception {
         SocketChannel sc = SocketChannel.open();
         sc.connect(new InetSocketAddress(9527));
-        System.out.println("waiting");
-        sc.write(StandardCharsets.UTF_8.encode("hello"));
+        sc.write(StandardCharsets.UTF_8.encode("非阻塞模式"));
     }
 
 }

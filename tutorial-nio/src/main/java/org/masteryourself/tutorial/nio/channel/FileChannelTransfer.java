@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
 
 /**
- * <p>description : FileChannelTest
+ * <p>description : FileChannelTransfer
  *
  * <p>blog : https://www.yuque.com/masteryourself
  *
@@ -16,7 +16,7 @@ import java.nio.channels.FileChannel;
  * @date : 2022/4/8 1:06 AM
  */
 @Slf4j
-public class FileChannelTest {
+public class FileChannelTransfer {
 
     public static void main(String[] args) {
         try (
@@ -24,7 +24,12 @@ public class FileChannelTest {
                 FileChannel to = new FileOutputStream("file/tutorial-io/to.txt").getChannel();
         ) {
             // 效率高, 底层会使用操作系统的零拷贝进行优化, 上限是 2G
-            from.transferTo(0, from.size(), to);
+            long size = from.size();
+            // left 变量代表还剩余多少字节
+            for (long left = size; left > 0; ) {
+                log.info("position:{}, left:{}", size - left, left);
+                left -= from.transferTo((size - left), left, to);
+            }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }

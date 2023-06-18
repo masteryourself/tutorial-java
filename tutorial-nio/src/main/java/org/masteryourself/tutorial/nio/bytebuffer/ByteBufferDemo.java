@@ -8,7 +8,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
- * <p>description : ByteBufferTest
+ * <p>description : ByteBufferDemo
  *
  * <p>blog : https://www.yuque.com/masteryourself
  *
@@ -17,7 +17,7 @@ import java.nio.channels.FileChannel;
  * @date : 2022/4/7 6:28 PM
  */
 @Slf4j
-public class ByteBufferTest {
+public class ByteBufferDemo {
 
     public static void main(String[] args) {
         // 准备输入流
