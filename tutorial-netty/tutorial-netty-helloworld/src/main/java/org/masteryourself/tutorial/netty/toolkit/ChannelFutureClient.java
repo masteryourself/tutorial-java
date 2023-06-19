@@ -8,10 +8,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringEncoder;
 
-import java.util.Date;
-
 /**
- * <p>description : ChannelListenerClient
+ * <p>description : ChannelFutureClient
  *
  * <p>blog : https://www.yuque.com/masteryourself
  *
@@ -19,29 +17,29 @@ import java.util.Date;
  * @version : 1.0.0
  * @date : 2022/4/11 12:57 PM
  */
-public class ChannelListenerClient {
+public class ChannelFutureClient {
 
     public static void main(String[] args) throws Exception {
         ChannelFuture channelFuture = new Bootstrap()
-                // 1. 创建 NioEventLoopGroup，同 Server
                 .group(new NioEventLoopGroup())
-                // 2. 选择服务 socket 实现类，其中 NioServerSocketChannel 表示基于 NIO 的服务器端实现
                 .channel(NioSocketChannel.class)
-                // 3. 添加 handler 处理器
                 .handler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) throws Exception {
-                        // 8. 消息会经过通道 handler 处理，这里是将 String => ByteBuf 发出
                         ch.pipeline().addLast(new StringEncoder());
                     }
                 })
-                // 4. 指定要连接的服务器和端口
                 .connect("127.0.0.1", 9527);
-        // 5. 使用监听器回调
-        channelFuture.addListener((ChannelFutureListener) future ->
-                // 6. 此时 channel 已经建立好，发送消息
-                future.channel().writeAndFlush(new Date() + ":hello world!")
-        );
+        // 1. 同步: 等待连接建立通道
+        // channelFuture.sync().channel().writeAndFlush("连接建立成功");
+        // 2. 异步: 使用 ChannelFutureListener 等待回调
+        ChannelFutureListener channelFutureListener = new ChannelFutureListener() {
+            @Override
+            public void operationComplete(ChannelFuture future) throws Exception {
+                future.channel().writeAndFlush("连接建立成功");
+            }
+        };
+        channelFuture.addListener(channelFutureListener);
     }
 
 }

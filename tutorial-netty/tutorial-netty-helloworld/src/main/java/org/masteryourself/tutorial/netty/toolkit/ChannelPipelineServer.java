@@ -71,7 +71,6 @@ public class ChannelPipelineServer {
                         });
                     }
                 })
-                // 4. ServerSocketChannel 绑定的监听端口
                 .bind(9527);
     }
 
