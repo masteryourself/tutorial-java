@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.netty.shortconnection;
+package org.masteryourself.tutorial.netty.half;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -8,24 +8,18 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>description : ShortConnectionNettyClient
+ * <p>description : HalfPackNettyClient
  *
  * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2022/4/15 4:54 PM
+ * @date : 2022/4/15 1:22 PM
  */
 @Slf4j
-public class ShortConnectionNettyClient {
+public class HalfPackNettyClient {
 
-    public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
-            sendMessage();
-        }
-    }
-
-    private static void sendMessage() {
+    public static void main(String[] args) throws Exception {
         NioEventLoopGroup eventLoopGroup = new NioEventLoopGroup();
         try {
             ChannelFuture channelFuture = new Bootstrap()
@@ -38,10 +32,12 @@ public class ShortConnectionNettyClient {
                                 @Override
                                 public void channelActive(ChannelHandlerContext ctx) throws Exception {
                                     ByteBuf buffer = ctx.alloc().buffer();
-                                    buffer.writeBytes(new byte[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+                                    for (int i = 0; i < 110; i++) {
+                                        buffer.writeBytes(new byte[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+                                    }
                                     // 客户端发送一次数据, 希望服务端也接收一次数据
                                     ctx.writeAndFlush(buffer);
-                                    // 发送完成之后关闭 channel
+                                    // 发送完成后关闭通道
                                     ctx.close();
                                 }
                             });

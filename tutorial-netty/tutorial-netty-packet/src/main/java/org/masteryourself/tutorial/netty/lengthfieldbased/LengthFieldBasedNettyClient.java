@@ -7,8 +7,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Random;
-
 /**
  * <p>description : LengthFieldBasedNettyClient
  *
@@ -33,18 +31,13 @@ public class LengthFieldBasedNettyClient {
                             ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
                                 @Override
                                 public void channelActive(ChannelHandlerContext ctx) throws Exception {
-                                    int length = new Random().nextInt(200) + 1000;
-                                    log.info("客户端一共准备发送 {} 个字节", length);
-                                    char init = 'a';
+                                    String content = "hello~~~hello";
+                                    int length = content.getBytes().length;
                                     ByteBuf buffer = ctx.alloc().buffer();
                                     // 先写入 4 个字节的长度
                                     buffer.writeInt(length);
-                                    for (int i = 0; i < length; i++) {
-                                        if (init == 'z') {
-                                            init = 'a';
-                                        }
-                                        buffer.writeByte(init++);
-                                    }
+                                    // 再写入内容
+                                    buffer.writeBytes(content.getBytes());
                                     // 客户端发送一次数据, 希望服务端也接收一次数据
                                     ctx.writeAndFlush(buffer);
                                     // 发送完成之后关闭 channel

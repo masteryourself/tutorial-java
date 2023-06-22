@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.netty.sticky;
+package org.masteryourself.tutorial.netty.half;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -11,16 +11,16 @@ import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>description : StickyPackageNettyServe
+ * <p>description : HalfPackNettyServe
  *
  * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2022/4/15 12:59 PM
+ * @date : 2022/4/15 1:21 PM
  */
 @Slf4j
-public class StickyPackageNettyServe {
+public class HalfPackNettyServe {
 
     public static void main(String[] args) {
         NioEventLoopGroup boos = new NioEventLoopGroup(1);
