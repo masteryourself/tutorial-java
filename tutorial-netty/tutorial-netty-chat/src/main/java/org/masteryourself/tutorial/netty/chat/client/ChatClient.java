@@ -14,7 +14,7 @@ import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.netty.chat.message.PingMessage;
 import org.masteryourself.tutorial.netty.chat.protocol.MessageCodecSharable;
-import org.masteryourself.tutorial.netty.chat.protocol.ProcotolFrameDecoder;
+import org.masteryourself.tutorial.netty.chat.protocol.ProtocolFrameDecoder;
 
 @Slf4j
 public class ChatClient {
@@ -29,7 +29,7 @@ public class ChatClient {
             bootstrap.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new ProcotolFrameDecoder());
+                    ch.pipeline().addLast(new ProtocolFrameDecoder());
                     ch.pipeline().addLast(MESSAGE_CODEC);
                     // 用来判断是不是[读空闲时间过长]，或[写空闲时间过长]
                     // 3s 内如果没有向服务器写数据，会触发一个 IdleState#WRITER_IDLE 事件

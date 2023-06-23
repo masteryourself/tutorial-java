@@ -13,7 +13,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.netty.chat.protocol.MessageCodecSharable;
-import org.masteryourself.tutorial.netty.chat.protocol.ProcotolFrameDecoder;
+import org.masteryourself.tutorial.netty.chat.protocol.ProtocolFrameDecoder;
 import org.masteryourself.tutorial.netty.chat.server.handler.*;
 
 @Slf4j
@@ -23,6 +23,14 @@ public class ChatServer {
         NioEventLoopGroup boss = new NioEventLoopGroup();
         NioEventLoopGroup worker = new NioEventLoopGroup();
         MessageCodecSharable MESSAGE_CODEC = new MessageCodecSharable();
+        LoginRequestMessageHandler LOGIN_HANDLER = new LoginRequestMessageHandler();
+        ChatRequestMessageHandler CHAT_REQUEST_HANDLER = new ChatRequestMessageHandler();
+        GroupCreateRequestMessageHandler GROUP_CREATE_REQUEST_HANDLER = new GroupCreateRequestMessageHandler();
+        GroupChatRequestMessageHandler GROUP_CHAT_REQUEST_HANDLER = new GroupChatRequestMessageHandler();
+        GroupJoinRequestMessageHandler GROUP_JOIN_REQUEST_HANDLER = new GroupJoinRequestMessageHandler();
+        GroupQuitRequestMessageHandler GROUP_QUIT_REQUEST_HANDLER = new GroupQuitRequestMessageHandler();
+        GroupMembersRequestMessageHandler GROUP_MEMBERS_REQUEST_HANDLER = new GroupMembersRequestMessageHandler();
+        QuitHandler QUIT_HANDLER = new QuitHandler();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.channel(NioServerSocketChannel.class);
@@ -30,17 +38,17 @@ public class ChatServer {
             serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new ProcotolFrameDecoder());
+                    // 处理半包粘包
+                    ch.pipeline().addLast(new ProtocolFrameDecoder());
                     ch.pipeline().addLast(MESSAGE_CODEC);
-                    ch.pipeline().addLast(new LoginRequestMessageHandler());
-                    ch.pipeline().addLast(new ChatRequestMessageHandler());
-                    ch.pipeline().addLast(new GroupCreateRequestMessageHandler());
-                    ch.pipeline().addLast(new GroupChatRequestMessageHandler());
-                    ch.pipeline().addLast(new GroupJoinRequestMessageHandler());
-                    ch.pipeline().addLast(new GroupQuitRequestMessageHandler());
-                    ch.pipeline().addLast(new GroupMembersRequestMessageHandler());
-                    ch.pipeline().addLast(new QuitHandler());
-                    // 用来判断是不是 [读空闲时间过长]，或 [写空闲时间过长]
+                    ch.pipeline().addLast(LOGIN_HANDLER);
+                    ch.pipeline().addLast(CHAT_REQUEST_HANDLER);
+                    ch.pipeline().addLast(GROUP_CREATE_REQUEST_HANDLER);
+                    ch.pipeline().addLast(GROUP_CHAT_REQUEST_HANDLER);
+                    ch.pipeline().addLast(GROUP_JOIN_REQUEST_HANDLER);
+                    ch.pipeline().addLast(GROUP_QUIT_REQUEST_HANDLER);
+                    ch.pipeline().addLast(GROUP_MEMBERS_REQUEST_HANDLER);
+                    ch.pipeline().addLast(QUIT_HANDLER);
                     // 10s 内如果没有收到 channel 的数据，会触发一个 IdleState#READER_IDLE 事件
                     ch.pipeline().addLast(new IdleStateHandler(10, 0, 0));
                     // ChannelDuplexHandler 可以同时作为入站和出站处理器
