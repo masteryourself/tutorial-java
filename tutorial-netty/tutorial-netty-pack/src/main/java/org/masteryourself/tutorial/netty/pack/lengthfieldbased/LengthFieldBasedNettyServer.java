@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.netty.lengthfieldbased;
+package org.masteryourself.tutorial.netty.pack.lengthfieldbased;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

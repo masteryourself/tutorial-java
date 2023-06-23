@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.netty.linebased;
+package org.masteryourself.tutorial.netty.pack.linebased;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;

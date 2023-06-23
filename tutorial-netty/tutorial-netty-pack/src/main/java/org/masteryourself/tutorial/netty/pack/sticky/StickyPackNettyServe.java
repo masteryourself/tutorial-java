@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.netty.linebased;
+package org.masteryourself.tutorial.netty.pack.sticky;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -6,22 +6,21 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>description : LineBasedNettyServer
+ * <p>description : StickyPackNettyServe
  *
  * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2022/4/15 5:49 PM
+ * @date : 2022/4/15 12:59 PM
  */
 @Slf4j
-public class LineBasedNettyServer {
+public class StickyPackNettyServe {
 
     public static void main(String[] args) {
         NioEventLoopGroup boos = new NioEventLoopGroup(1);
@@ -33,7 +32,6 @@ public class LineBasedNettyServer {
                     .childHandler(new ChannelInitializer<NioSocketChannel>() {
                         @Override
                         protected void initChannel(NioSocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
                             ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
                         }
                     })

@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.netty.lengthfieldbased;
+package org.masteryourself.tutorial.netty.pack.half;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -8,18 +8,18 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>description : LengthFieldBasedNettyClient
+ * <p>description : HalfPackNettyClient
  *
  * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2022/4/15 6:18 PM
+ * @date : 2022/4/15 1:22 PM
  */
 @Slf4j
-public class LengthFieldBasedNettyClient {
+public class HalfPackNettyClient {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         NioEventLoopGroup eventLoopGroup = new NioEventLoopGroup();
         try {
             ChannelFuture channelFuture = new Bootstrap()
@@ -31,16 +31,13 @@ public class LengthFieldBasedNettyClient {
                             ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
                                 @Override
                                 public void channelActive(ChannelHandlerContext ctx) throws Exception {
-                                    String content = "hello~~~hello";
-                                    int length = content.getBytes().length;
                                     ByteBuf buffer = ctx.alloc().buffer();
-                                    // 先写入 4 个字节的长度
-                                    buffer.writeInt(length);
-                                    // 再写入内容
-                                    buffer.writeBytes(content.getBytes());
+                                    for (int i = 0; i < 110; i++) {
+                                        buffer.writeBytes(new byte[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+                                    }
                                     // 客户端发送一次数据, 希望服务端也接收一次数据
                                     ctx.writeAndFlush(buffer);
-                                    // 发送完成之后关闭 channel
+                                    // 发送完成后关闭通道
                                     ctx.close();
                                 }
                             });
