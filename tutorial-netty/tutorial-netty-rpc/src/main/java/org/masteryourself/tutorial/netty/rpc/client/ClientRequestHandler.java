@@ -1,5 +1,6 @@
 package org.masteryourself.tutorial.netty.rpc.client;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.concurrent.Promise;
@@ -19,6 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date : 2022/4/18 12:54 AM
  */
 @Slf4j
+@ChannelHandler.Sharable
 public class ClientRequestHandler extends SimpleChannelInboundHandler<RpcResponseMessage> {
 
     public static final Map<Integer, Promise<Object>> PROMISES = new ConcurrentHashMap<>();

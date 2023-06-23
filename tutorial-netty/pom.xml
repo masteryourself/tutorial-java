@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>tutorial-netty-helloworld</module>
-        <module>tutorial-netty-packet</module>
+        <module>tutorial-netty-pack</module>
         <module>tutorial-netty-protocol</module>
         <module>tutorial-netty-chat</module>
         <module>tutorial-netty-rpc</module>

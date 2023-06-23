@@ -1,5 +1,6 @@
 package org.masteryourself.tutorial.netty.rpc.server.handler;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ import java.lang.reflect.Method;
  * @date : 2022/4/18 1:04 AM
  */
 @Slf4j
+@ChannelHandler.Sharable
 public class ServerRequestHandler extends SimpleChannelInboundHandler<RpcRequestMessage> {
 
     @Override

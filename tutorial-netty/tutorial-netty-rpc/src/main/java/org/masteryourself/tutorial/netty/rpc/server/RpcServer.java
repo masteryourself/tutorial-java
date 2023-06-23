@@ -13,7 +13,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.masteryourself.tutorial.netty.rpc.protocol.MessageCodecSharable;
-import org.masteryourself.tutorial.netty.rpc.protocol.ProcotolFrameDecoder;
+import org.masteryourself.tutorial.netty.rpc.protocol.ProtocolFrameDecoder;
 import org.masteryourself.tutorial.netty.rpc.server.handler.ServerRequestHandler;
 
 /**
@@ -32,6 +32,7 @@ public class RpcServer {
         NioEventLoopGroup boss = new NioEventLoopGroup();
         NioEventLoopGroup worker = new NioEventLoopGroup();
         MessageCodecSharable MESSAGE_CODEC = new MessageCodecSharable();
+        ServerRequestHandler SERVER_REQUEST_HANDLER = new ServerRequestHandler();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.channel(NioServerSocketChannel.class);
@@ -39,10 +40,10 @@ public class RpcServer {
             serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new ProcotolFrameDecoder());
+                    ch.pipeline().addLast(new ProtocolFrameDecoder());
                     ch.pipeline().addLast(MESSAGE_CODEC);
                     // 业务逻辑处理
-                    ch.pipeline().addLast(new ServerRequestHandler());
+                    ch.pipeline().addLast(SERVER_REQUEST_HANDLER);
                     // 用来判断是不是 [读空闲时间过长]，或 [写空闲时间过长]
                     // 10s 内如果没有收到 channel 的数据，会触发一个 IdleState#READER_IDLE 事件
                     ch.pipeline().addLast(new IdleStateHandler(10, 0, 0));
