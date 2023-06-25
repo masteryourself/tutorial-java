@@ -1,10 +1,10 @@
-package org.masteryourself.tutorial.concurrent.sync.biased;
+package org.masteryourself.tutorial.concurrent.v2.sync.biased;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openjdk.jol.info.ClassLayout;
 
 /**
- * <p>description : SyncBiased2
+ * <p>description : BiasedTest2
  *
  * <p>blog : https://www.yuque.com/masteryourself
  *
@@ -13,23 +13,23 @@ import org.openjdk.jol.info.ClassLayout;
  * @date : 2022/4/26 1:14 PM
  */
 @Slf4j
-public class SyncBiased2 {
+public class BiasedTest2 {
 
     // 需要添加 VM 参数禁用延迟 -XX:BiasedLockingStartupDelay=0
     public static void main(String[] args) {
         Dog d = new Dog();
         ClassLayout classLayout = ClassLayout.parseInstance(d);
 
-        log.info("synchronized 前");
-        // 0x0000000000000005 (biasable; age: 0) => 05=0000 0101(此时具有偏向锁)
+        log.info("加锁前");
+        // 0x0000000000000005 (biasable; age: 0) => 101(可偏向状态)
         System.out.println(classLayout.toPrintable());
         synchronized (d) {
-            log.info("synchronized 中");
-            // 0x00007fc579af5005 (biased: 0x0000001ff15e6bd4; epoch: 0; age: 0) => 线程 id + 偏向锁
+            log.info("加锁后");
+            // 0x00007fd551811005 (biased: 0x0000001ff5546044; epoch: 0; age: 0) => 101(线程 id + 偏向锁)
             System.out.println(classLayout.toPrintable());
         }
-        log.info("synchronized 后");
-        //  0x00007fc579af5005 (biased: 0x0000001ff15e6bd4; epoch: 0; age: 0) => 线程 id + 偏向锁
+        log.info("解锁后");
+        //  0x00007fd551811005 (biased: 0x0000001ff5546044; epoch: 0; age: 0) => 101(线程 id + 偏向锁)
         System.out.println(classLayout.toPrintable());
     }
 
