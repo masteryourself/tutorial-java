@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.concurrent.v2.sync.fixedorder;
+package org.masteryourself.tutorial.concurrent.v2.sync.order;
 
 import lombok.extern.slf4j.Slf4j;
 
