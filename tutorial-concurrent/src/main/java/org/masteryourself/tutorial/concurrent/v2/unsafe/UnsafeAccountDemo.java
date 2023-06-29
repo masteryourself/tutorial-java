@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.concurrent.unsafe;
+package org.masteryourself.tutorial.concurrent.v2.unsafe;
 
 import sun.misc.Unsafe;
 

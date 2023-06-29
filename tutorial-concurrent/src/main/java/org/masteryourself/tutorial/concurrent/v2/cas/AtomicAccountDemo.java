@@ -1,19 +1,22 @@
-package org.masteryourself.tutorial.concurrent.atomic;
+package org.masteryourself.tutorial.concurrent.v2.cas;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * <p>description : AtomicDemo
+ * <p>description : AtomicAccountDemo
  *
  * <p>blog : https://www.yuque.com/masteryourself
  *
  * @author : masteryourself
  * @version : 1.0.0
- * @date : 2022/9/3 14:27
+ * @date : 2023/6/28 15:44
  */
-public class AtomicDemo {
+@Slf4j
+public class AtomicAccountDemo {
 
     public static void main(String[] args) {
         Account account = new CasAccount(10000);
@@ -31,7 +34,7 @@ public class AtomicDemo {
                 e.printStackTrace();
             }
         });
-        System.out.println(account.getBalance());
+        log.info("剩余余额是 {}", account.getBalance());
     }
 
     public interface Account {

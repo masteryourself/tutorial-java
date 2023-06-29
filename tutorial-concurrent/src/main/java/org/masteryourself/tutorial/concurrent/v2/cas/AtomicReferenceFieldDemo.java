@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.concurrent.atomic;
+package org.masteryourself.tutorial.concurrent.v2.cas;
 
 import lombok.Data;
 
