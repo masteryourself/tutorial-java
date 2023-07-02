@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.concurrent.threadpool.exception;
+package org.masteryourself.tutorial.concurrent.v2.threadpool.exception;
 
 import lombok.extern.slf4j.Slf4j;
 

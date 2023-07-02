@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.concurrent.threadpool.customize;
+package org.masteryourself.tutorial.concurrent.v2.threadpool.customize;
 
 /**
  * <p>description : RejectPolicy

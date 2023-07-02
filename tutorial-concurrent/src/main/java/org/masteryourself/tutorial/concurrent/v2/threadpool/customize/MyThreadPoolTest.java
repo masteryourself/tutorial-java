@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.concurrent.threadpool.customize;
+package org.masteryourself.tutorial.concurrent.v2.threadpool.customize;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +38,7 @@ public class MyThreadPoolTest {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                log.debug("任务执行完成, 结果是 {}", j);
+                log.info("任务执行完成, 结果是 {}", j);
             });
         }
     }
