@@ -20,11 +20,14 @@ import java.util.concurrent.ThreadFactory;
 public class ThreadPoolExceptionHandle {
 
     public static void main(String[] args) throws Exception {
-        exceptionHandle1();
-        exceptionHandle2();
+        // exceptionHandle1();
+        // exceptionHandle2();
         exceptionHandle3();
     }
 
+    /**
+     * 主动捕获异常
+     */
     private static void exceptionHandle1() {
         ExecutorService threadPool = Executors.newFixedThreadPool(2);
         threadPool.execute(() -> {
@@ -37,6 +40,9 @@ public class ThreadPoolExceptionHandle {
         });
     }
 
+    /**
+     * 使用 future 捕获异常
+     */
     private static void exceptionHandle2() throws Exception {
         ExecutorService threadPool = Executors.newFixedThreadPool(2);
         Future<?> future = threadPool.submit(() -> {
@@ -46,6 +52,9 @@ public class ThreadPoolExceptionHandle {
         log.info("res {}", future.get());
     }
 
+    /**
+     * 使用 setUncaughtExceptionHandler 方法捕获异常
+     */
     private static void exceptionHandle3() {
         ExecutorService threadPool = Executors.newFixedThreadPool(2, new ThreadFactory() {
             @Override
