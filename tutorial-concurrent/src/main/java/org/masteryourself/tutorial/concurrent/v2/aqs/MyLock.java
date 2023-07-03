@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.concurrent.aqs;
+package org.masteryourself.tutorial.concurrent.v2.aqs;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
@@ -94,11 +94,12 @@ public class MyLock implements Lock {
 
         @Override
         protected boolean isHeldExclusively() {
-            return getState() == 1;
+            return getExclusiveOwnerThread() == Thread.currentThread();
         }
 
         public Condition newCondition() {
             return new ConditionObject();
         }
     }
+
 }

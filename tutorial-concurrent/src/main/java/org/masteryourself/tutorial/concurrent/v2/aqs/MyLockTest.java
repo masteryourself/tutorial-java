@@ -1,4 +1,4 @@
-package org.masteryourself.tutorial.concurrent.aqs;
+package org.masteryourself.tutorial.concurrent.v2.aqs;
 
 import lombok.extern.slf4j.Slf4j;
 
