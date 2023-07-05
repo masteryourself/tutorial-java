@@ -19,7 +19,6 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ReentrantLockDemo4 {
 
     public static void main(String[] args) {
-
         ReentrantLock lock = new ReentrantLock();
         // 等烟休息室
         Condition waitCigaretteCondition = lock.newCondition();
